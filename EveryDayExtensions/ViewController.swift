@@ -115,9 +115,18 @@ class UIButtonCell: UITableViewCell {
 
     @IBOutlet weak var button: UIButton!
 
+    @IBAction func tap(button: UIButton) {
+        button.isEnabled = !button.isEnabled
+
+        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { (timer) in
+            button.isEnabled = true
+        }
+    }
+
     func configure(for indexPath: IndexPath) {
-        self.button.title = "self.button.textColor = (.white, .gray)"
-        self.button.textColor = (.white, .gray)
+        let darkBlue = UIColor(red: 0, green: 122.0/255.0 * 0.5, blue: 0.5, alpha: 1.0)
+        self.button.title = "self.button.textColor = (.white, darkBlue)"
+        self.button.textColor = (.white, darkBlue)
     }
 }
 
@@ -141,13 +150,19 @@ class UIFontCell: UITableViewCell {
     }
 }
 
-class UITextFieldCell: UITableViewCell {
+class UITextFieldCell: UITableViewCell, UITextFieldDelegate {
     static let identifier = "UITextFieldCell"
 
     @IBOutlet weak var textField: UITextField!
 
     func configure(for indexPath: IndexPath) {
+        self.textField.delegate = self
         self.textField.placeholderTextColor = .white
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.textField.resignFirstResponder()
+        return true
     }
 }
 
@@ -159,6 +174,6 @@ class UIViewCell: UITableViewCell {
 
     func configure(for indexPath: IndexPath) {
         self.roundedView.rounded = true
-        self.cornerRadiusView.cornerRadius = 64
+        self.cornerRadiusView.cornerRadius = 32
     }
 }

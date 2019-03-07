@@ -29,28 +29,58 @@
 
 import UIKit
 
+struct StringStyles {
+    
+    var normalColor: UIColor
+    var normalFont: UIFont
+    var boldColor: UIColor
+    var boldFont: UIFont
+    var highlightColor: UIColor
+    var highlightFont: UIFont
+    var titleColor: UIColor
+    var titleFont: UIFont
+
+    static func defaultStyle() -> StringStyles {
+        let defaultFontSize = 24
+        let defaultTitleSize = 36
+        let defaultFontWeight = UIFont.Weight.thin
+        return StringStyles(
+            normalColor: .black,
+            normalFont: .sanFrancisco(defaultFontSize, defaultFontWeight),
+            boldColor: .black,
+            boldFont: .sanFrancisco(defaultFontSize, .bold),
+            highlightColor: .red,
+            highlightFont: .sanFrancisco(defaultFontSize, defaultFontWeight),
+            titleColor: .blue,
+            titleFont: .sanFrancisco(defaultTitleSize, defaultFontWeight)
+        )
+    }
+}
+
 extension String {
 
-    func attributed(
-        _ color: UIColor = .black, _ font: UIFont = .sanFrancisco(36, .thin),
-        bold boldColor: UIColor = .black, _ boldFont: UIFont = .sanFrancisco(36, .bold),
-        highlight highlightColor: UIColor = .red, _ highlightFont: UIFont = .sanFrancisco(36, .thin),
-        title titleColor: UIColor = .blue, _ titleFont: UIFont = .sanFrancisco(48, .thin)
-        ) -> NSAttributedString {
+    func attributed(_ color: UIColor, _ font: UIFont) -> NSAttributedString {
+        var style = StringStyles.defaultStyle()
+        style.normalColor = color
+        style.normalFont = font
+        return self.attributed(with: style)
+    }
 
-        let attributedString = NSMutableAttributedString(string: self, attributes: [.foregroundColor : color, .font : font])
+    func attributed(with style: StringStyles = StringStyles.defaultStyle()) -> NSAttributedString {
+
+        let attributedString = NSMutableAttributedString(string: self, attributes: [.foregroundColor: style.normalColor, .font: style.normalFont])
         
         attributedString.enumeratePattern("*") {
             (range: NSRange) -> Void in
-            attributedString.addAttributes([.foregroundColor : boldColor, .font : boldFont], range: range)
+            attributedString.addAttributes([.foregroundColor: style.boldColor, .font: style.boldFont], range: range)
         }
         attributedString.enumeratePattern("_") {
             (range: NSRange) -> Void in
-            attributedString.addAttributes([.foregroundColor : highlightColor, .font : highlightFont], range: range)
+            attributedString.addAttributes([.foregroundColor: style.highlightColor, .font: style.highlightFont], range: range)
         }
         attributedString.enumeratePattern("=") {
             (range: NSRange) -> Void in
-            attributedString.addAttributes([.foregroundColor : titleColor, .font : titleFont], range: range)
+            attributedString.addAttributes([.foregroundColor: style.titleColor, .font: style.titleFont], range: range)
         }
         return attributedString
     }
