@@ -1,7 +1,7 @@
 
 # EveryDayExtensions
 
-A simple library of Swift extensions...
+A simple (almost a) library of Swift extensions...
 
 ## Background
 

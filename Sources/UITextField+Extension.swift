@@ -31,7 +31,7 @@ import UIKit
 
 extension UITextField {
 
-    static let placeholderAlpha = CGFloat(0.23)
+    static let placeholderAlpha = CGFloat(0.5) // 0.23 is the empirical default for black on white, but 0.5 works better generally
 
     var placeholderTextColor: UIColor {
         set {
