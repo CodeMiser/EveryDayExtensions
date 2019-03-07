@@ -29,33 +29,21 @@
 
 import UIKit
 
-struct StringStyles {
+class StringStyles {
 
     var normal: [NSAttributedString.Key : Any]
     var bold: [NSAttributedString.Key : Any]
     var highlight: [NSAttributedString.Key : Any]
     var title: [NSAttributedString.Key : Any]
 
-    init(_ normalColor: UIColor = .black, _ normalFont: UIFont = .sanFrancisco(),
-         bold boldColor: UIColor = .black, _ boldFont: UIFont = .sanFrancisco(17, .bold),
-         highlight highlightColor: UIColor = .black, _ highlightFont: UIFont = .sanFrancisco(),
-         title titleColor: UIColor = .black, _ titleFont: UIFont = .sanFrancisco(24)) {
+    init(_ normalColor: UIColor = .black, _ normalFont: UIFont = .sanFrancisco(24, .thin),
+         bold boldColor: UIColor = .black, _ boldFont: UIFont = .sanFrancisco(24, .bold),
+         highlight highlightColor: UIColor = .red, _ highlightFont: UIFont = .sanFrancisco(24, .thin),
+         title titleColor: UIColor = .defaultTintColor, _ titleFont: UIFont = .sanFrancisco(36, .thin)) {
         self.normal = [.foregroundColor: normalColor, .font: normalFont]
         self.bold = [.foregroundColor: boldColor, .font: boldFont]
         self.highlight = [.foregroundColor: highlightColor, .font: highlightFont]
         self.title = [.foregroundColor: titleColor, .font: titleFont]
-    }
-
-    static func defaultStyle() -> StringStyles {
-        let defaultFontSize = 24
-        let defaultTitleSize = 36
-        let defaultFontWeight = UIFont.Weight.thin
-        return StringStyles(
-            .black, .sanFrancisco(defaultFontSize, defaultFontWeight),
-            bold: .black, .sanFrancisco(defaultFontSize, .bold),
-            highlight: .red, .sanFrancisco(defaultFontSize, defaultFontWeight),
-            title: .blue, .sanFrancisco(defaultTitleSize, defaultFontWeight)
-        )
     }
 }
 
@@ -66,7 +54,7 @@ extension String {
         return self.attributed(with: style)
     }
 
-    func attributed(with style: StringStyles = StringStyles.defaultStyle()) -> NSAttributedString {
+    func attributed(with style: StringStyles = StringStyles()) -> NSAttributedString {
 
         let attributedString = NSMutableAttributedString(string: self, attributes: style.normal)
         
