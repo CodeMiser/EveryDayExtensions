@@ -30,29 +30,31 @@
 import UIKit
 
 struct StringStyles {
-    
-    var normalColor: UIColor
-    var normalFont: UIFont
-    var boldColor: UIColor
-    var boldFont: UIFont
-    var highlightColor: UIColor
-    var highlightFont: UIFont
-    var titleColor: UIColor
-    var titleFont: UIFont
+
+    var normal: [NSAttributedString.Key : Any]
+    var bold: [NSAttributedString.Key : Any]
+    var highlight: [NSAttributedString.Key : Any]
+    var title: [NSAttributedString.Key : Any]
+
+    init(_ normalColor: UIColor = .black, _ normalFont: UIFont = .sanFrancisco(),
+         bold boldColor: UIColor = .black, _ boldFont: UIFont = .sanFrancisco(17, .bold),
+         highlight highlightColor: UIColor = .black, _ highlightFont: UIFont = .sanFrancisco(),
+         title titleColor: UIColor = .black, _ titleFont: UIFont = .sanFrancisco(24)) {
+        self.normal = [.foregroundColor: normalColor, .font: normalFont]
+        self.bold = [.foregroundColor: boldColor, .font: boldFont]
+        self.highlight = [.foregroundColor: highlightColor, .font: highlightFont]
+        self.title = [.foregroundColor: titleColor, .font: titleFont]
+    }
 
     static func defaultStyle() -> StringStyles {
         let defaultFontSize = 24
         let defaultTitleSize = 36
         let defaultFontWeight = UIFont.Weight.thin
         return StringStyles(
-            normalColor: .black,
-            normalFont: .sanFrancisco(defaultFontSize, defaultFontWeight),
-            boldColor: .black,
-            boldFont: .sanFrancisco(defaultFontSize, .bold),
-            highlightColor: .red,
-            highlightFont: .sanFrancisco(defaultFontSize, defaultFontWeight),
-            titleColor: .blue,
-            titleFont: .sanFrancisco(defaultTitleSize, defaultFontWeight)
+            .black, .sanFrancisco(defaultFontSize, defaultFontWeight),
+            bold: .black, .sanFrancisco(defaultFontSize, .bold),
+            highlight: .red, .sanFrancisco(defaultFontSize, defaultFontWeight),
+            title: .blue, .sanFrancisco(defaultTitleSize, defaultFontWeight)
         )
     }
 }
@@ -60,27 +62,25 @@ struct StringStyles {
 extension String {
 
     func attributed(_ color: UIColor, _ font: UIFont) -> NSAttributedString {
-        var style = StringStyles.defaultStyle()
-        style.normalColor = color
-        style.normalFont = font
+        let style = StringStyles(color, font)
         return self.attributed(with: style)
     }
 
     func attributed(with style: StringStyles = StringStyles.defaultStyle()) -> NSAttributedString {
 
-        let attributedString = NSMutableAttributedString(string: self, attributes: [.foregroundColor: style.normalColor, .font: style.normalFont])
+        let attributedString = NSMutableAttributedString(string: self, attributes: style.normal)
         
         attributedString.enumeratePattern("*") {
             (range: NSRange) -> Void in
-            attributedString.addAttributes([.foregroundColor: style.boldColor, .font: style.boldFont], range: range)
+            attributedString.addAttributes(style.bold, range: range)
         }
         attributedString.enumeratePattern("_") {
             (range: NSRange) -> Void in
-            attributedString.addAttributes([.foregroundColor: style.highlightColor, .font: style.highlightFont], range: range)
+            attributedString.addAttributes(style.highlight, range: range)
         }
         attributedString.enumeratePattern("=") {
             (range: NSRange) -> Void in
-            attributedString.addAttributes([.foregroundColor: style.titleColor, .font: style.titleFont], range: range)
+            attributedString.addAttributes(style.title, range: range)
         }
         return attributedString
     }
