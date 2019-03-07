@@ -31,6 +31,10 @@ import UIKit
 
 class StringStyles {
 
+    static let bold: Character = "*"
+    static let highlight: Character = "_"
+    static let title: Character = "="
+
     var normal: [NSAttributedString.Key : Any]
     var bold: [NSAttributedString.Key : Any]
     var highlight: [NSAttributedString.Key : Any]
@@ -58,15 +62,15 @@ extension String {
 
         let attributedString = NSMutableAttributedString(string: self, attributes: style.normal)
         
-        attributedString.enumeratePattern("*") {
+        attributedString.enumeratePattern(StringStyles.bold) {
             (range: NSRange) -> Void in
             attributedString.addAttributes(style.bold, range: range)
         }
-        attributedString.enumeratePattern("_") {
+        attributedString.enumeratePattern(StringStyles.highlight) {
             (range: NSRange) -> Void in
             attributedString.addAttributes(style.highlight, range: range)
         }
-        attributedString.enumeratePattern("=") {
+        attributedString.enumeratePattern(StringStyles.title) {
             (range: NSRange) -> Void in
             attributedString.addAttributes(style.title, range: range)
         }
