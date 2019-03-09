@@ -123,7 +123,7 @@
 		D2BF1A1E222ED87A00CB2DFE /* EveryDayExtensions */ = {
 			isa = PBXGroup;
 			children = (
-				D2BF1A4E222ED98200CB2DFE /* Sources */,
+				D2BF1A4E222ED98200CB2DFE /* Extensions */,
 				D2BF1A1F222ED87A00CB2DFE /* AppDelegate.swift */,
 				D2BF1A21222ED87A00CB2DFE /* ViewController.swift */,
 				D2BF1A23222ED87A00CB2DFE /* Main.storyboard */,
@@ -143,7 +143,7 @@
 			path = EveryDayExtensionsTests;
 			sourceTree = "<group>";
 		};
-		D2BF1A4E222ED98200CB2DFE /* Sources */ = {
+		D2BF1A4E222ED98200CB2DFE /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				D2BF1A53222ED9EE00CB2DFE /* Array+Extension.swift */,
@@ -159,8 +159,8 @@
 				D2BF1A51222ED9EE00CB2DFE /* UITextField+Extension.swift */,
 				D2BF1A52222ED9EE00CB2DFE /* UIView+Extension.swift */,
 			);
-			name = Sources;
-			path = /Users/markpoesch/EveryDayExtensions/Sources;
+			name = Extensions;
+			path = /Users/markpoesch/EveryDayExtensions/Extensions;
 			sourceTree = "<absolute>";
 		};
 /* End PBXGroup section */
