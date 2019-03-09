@@ -3,6 +3,8 @@
 
 A sample app demonstrating a few nifty Swift extensions...
 
+![Simulator Screen Shot - iPhone XR - 2019-03-09 at 03 07 34](https://user-images.githubusercontent.com/763650/54070882-bbde4600-421a-11e9-9810-a553e0fede16.png)
+
 ## Background
 
 Small moves... maybe it'll grow up to be a Pod some day.
