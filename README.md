@@ -1,11 +1,11 @@
 
 # EveryDayExtensions
 
-A simple (almost a) library of Swift extensions...
+A sample app demonstrating a few nifty Swift extensions...
 
 ## Background
 
-Small moves...
+Small moves... maybe it'll grow up to be a Pod some day.
 
 ## Requirements
 
@@ -21,7 +21,9 @@ Documentation is  [available online](https://github.com/CodeMiser/EveryDayExtens
 
 ## Installation
 
-TBD: [CocoaPods](https://github.com/cocoapods/cocoapods), or git submodules.
+TBD: Someday this section may be valid... for now, nope.  Just clone the project, open the project, build and run!
+
+[CocoaPods](https://github.com/cocoapods/cocoapods), or git submodules.
 
 ### CocoaPods
 
