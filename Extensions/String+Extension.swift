@@ -53,6 +53,38 @@ class StringStyles {
 
 extension String {
 
+    // https://stackoverflow.com/questions/24092884/get-nth-character-of-a-string-in-swift-programming-language
+    subscript (i: Int) -> Character {
+        return self[index(startIndex, offsetBy: i)]
+    }
+
+    // https://stackoverflow.com/questions/39677330/how-does-string-substring-work-in-swift
+    subscript(_ range: CountableRange<Int>) -> String {
+        let firstIndex = index(startIndex, offsetBy: max(0, range.lowerBound))
+        let lastIndex = index(startIndex, offsetBy: min(self.count, range.upperBound))
+        return String(self[firstIndex..<lastIndex])
+    }
+
+    subscript(_ range: PartialRangeFrom<Int>) -> String {
+        let firstIndex = index(startIndex, offsetBy: max(0, range.lowerBound))
+        let lastIndex = index(startIndex, offsetBy: self.count)
+        return String(self[firstIndex..<lastIndex])
+    }
+
+    subscript(_ range: PartialRangeUpTo<Int>) -> String {
+        let firstIndex = index(startIndex, offsetBy: 0)
+        let lastIndex = index(startIndex, offsetBy: min(self.count, range.upperBound))
+        return String(self[firstIndex..<lastIndex])
+    }
+
+    //TODO: this will be replaced in Swift 5: https://www.hackingwithswift.com/articles/126/whats-new-in-swift-5-0
+    func count(_ character: Character) -> Int {
+        let count = self.reduce(0) { (result, char) -> Int in
+            return result + (char == character ? 1 : 0)
+        }
+        return count
+    }
+
     func attributed(_ color: UIColor, _ font: UIFont) -> NSAttributedString {
         let style = StringStyles(color, font)
         return self.attributed(with: style)

@@ -32,4 +32,49 @@ import UIKit
 extension UIColor {
 
     static let defaultTintColor = UIColor(red: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 1.0)
+
+    convenience init(r: Int, g: Int, b: Int) {
+        self.init(red: CGFloat(r) / CGFloat(255.0), green: CGFloat(g) / CGFloat(255.0), blue: CGFloat(b) / CGFloat(255.0), alpha: 1.0)
+    }
+
+    class func color(hex: String) -> UIColor {
+        var color = hex
+        if color.hasPrefix("#") {
+            color = String(hex.dropFirst())
+        } else if color.hasPrefix("0x") {
+            color = String(hex.dropFirst(2))
+        }
+        switch color.count {
+        case 1:
+            return UIColor(white: CGFloat(color.hexToDecimal) / CGFloat(16.0), alpha: 1.0)
+        case 2:
+            return UIColor(white: CGFloat(color.hexToDecimal) / CGFloat(255.0), alpha: 1.0)
+        case 6:
+            let b = color[0..<2].hexToDecimal
+            let g = color[2..<4].hexToDecimal
+            let r = color[4..<6].hexToDecimal
+            return UIColor(r: r, g: g, b: b)
+        default:
+            return UIColor.black
+        }
+    }
+}
+
+extension String {
+    
+    var hexToDecimal: Int {
+        var decimal = 0
+        for digit in self.reversed() {
+            decimal *= 16
+            switch digit {
+            case "0"..."9":
+                decimal += Int(digit.asciiValue! - Character("9").asciiValue!)
+            case "A"..."F":
+                decimal += Int(digit.asciiValue! - Character("A").asciiValue!)
+            default:
+                return 0
+            }
+        }
+        return decimal
+    }
 }

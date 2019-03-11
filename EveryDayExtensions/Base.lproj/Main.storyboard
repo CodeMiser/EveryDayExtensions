@@ -31,8 +31,64 @@
                                 <rect key="frame" x="0.0" y="131" width="375" height="319"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UIButtonCell" id="7Bb-hl-TXl" customClass="UIButtonCell" customModule="EveryDayExtensions" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UIAlertControllerCell" id="jTy-UD-tcD" customClass="UIAlertControllerCell" customModule="EveryDayExtensions" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="64"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jTy-UD-tcD" id="go6-Fq-QlV">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="63.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="9mU-HL-kpU">
+                                                    <rect key="frame" x="15" y="11" width="345" height="42"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hLn-24-3Ge">
+                                                            <rect key="frame" x="0.0" y="0.0" width="60" height="42"/>
+                                                            <state key="normal" title="Alert"/>
+                                                            <connections>
+                                                                <action selector="alertWithButton:" destination="jTy-UD-tcD" eventType="touchUpInside" id="vc9-bZ-kbg"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Fn-X4-iCg">
+                                                            <rect key="frame" x="71" y="0.0" width="60.5" height="42"/>
+                                                            <state key="normal" title="Cancel"/>
+                                                            <connections>
+                                                                <action selector="alertCancelWithButton:" destination="jTy-UD-tcD" eventType="touchUpInside" id="ONl-KN-btI"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y6G-Qh-dNG">
+                                                            <rect key="frame" x="142.5" y="0.0" width="60" height="42"/>
+                                                            <state key="normal" title="Delete"/>
+                                                            <connections>
+                                                                <action selector="alertDeleteWithButton:" destination="jTy-UD-tcD" eventType="touchUpInside" id="BWe-3E-dkq"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZmK-Wm-hxB">
+                                                            <rect key="frame" x="213.5" y="0.0" width="60.5" height="42"/>
+                                                            <state key="normal" title="Sheet"/>
+                                                            <connections>
+                                                                <action selector="sheetWithButton:" destination="jTy-UD-tcD" eventType="touchUpInside" id="Dlp-aM-RxT"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YXX-rZ-qYu">
+                                                            <rect key="frame" x="285" y="0.0" width="60" height="42"/>
+                                                            <state key="normal" title="Delete"/>
+                                                            <connections>
+                                                                <action selector="sheetDeleteWithButton:" destination="jTy-UD-tcD" eventType="touchUpInside" id="d8X-62-ZDd"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="9mU-HL-kpU" firstAttribute="top" secondItem="go6-Fq-QlV" secondAttribute="topMargin" id="0lI-Da-K3W"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="9mU-HL-kpU" secondAttribute="trailing" id="7l2-Nl-EO1"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="9mU-HL-kpU" secondAttribute="bottom" id="9ip-m7-JJq"/>
+                                                <constraint firstItem="9mU-HL-kpU" firstAttribute="leading" secondItem="go6-Fq-QlV" secondAttribute="leadingMargin" id="Xir-HH-Cxu"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UIButtonCell" id="7Bb-hl-TXl" customClass="UIButtonCell" customModule="EveryDayExtensions" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="92" width="375" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7Bb-hl-TXl" id="NXK-7J-eY8">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="63.5"/>
@@ -66,7 +122,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UIColorCell" id="PhH-vo-iZq" customClass="UIColorCell" customModule="EveryDayExtensions" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="375" height="64"/>
+                                        <rect key="frame" x="0.0" y="156" width="375" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PhH-vo-iZq" id="fJ1-zA-5yd">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="63.5"/>
@@ -105,7 +161,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UIFontCell" id="alz-ce-frD" customClass="UIFontCell" customModule="EveryDayExtensions" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="156" width="375" height="64"/>
+                                        <rect key="frame" x="0.0" y="220" width="375" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="alz-ce-frD" id="vQD-Pd-p6M">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="63.5"/>
@@ -130,7 +186,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UITextFieldCell" id="u6h-bs-nPI" customClass="UITextFieldCell" customModule="EveryDayExtensions" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="220" width="375" height="64"/>
+                                        <rect key="frame" x="0.0" y="284" width="375" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="u6h-bs-nPI" id="Bpq-hW-Ity">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="63.5"/>
@@ -156,7 +212,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UIViewCell" rowHeight="256" id="pFN-xR-6wc" customClass="UIViewCell" customModule="EveryDayExtensions" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="284" width="375" height="256"/>
+                                        <rect key="frame" x="0.0" y="348" width="375" height="256"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pFN-xR-6wc" id="d47-48-u6Q">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="255.5"/>
@@ -184,10 +240,10 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OGO-1c-WVJ">
-                                                    <rect key="frame" x="15" y="64" width="345" height="181"/>
+                                                    <rect key="frame" x="8" y="64" width="359" height="183.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UIView.cornerRadius = 32" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s5L-4c-WFb">
-                                                            <rect key="frame" x="32.5" y="80" width="280" height="21"/>
+                                                            <rect key="frame" x="39.5" y="81.5" width="280" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="280" id="5hP-db-ft3"/>
                                                                 <constraint firstAttribute="height" constant="21" id="n79-FB-awC"/>

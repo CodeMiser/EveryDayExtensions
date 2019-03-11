@@ -32,6 +32,7 @@ import UIKit
 class ViewController: UIViewController, UIApplicationDelegate {
 
     let identifiers = [
+        UIAlertControllerCell.identifier,
         UIButtonCell.identifier,
         UIColorCell.identifier,
         UIFontCell.identifier,
@@ -79,6 +80,8 @@ extension ViewController: UITableViewDataSource {
         let identifier = self.identifiers[indexPath.row]
         let cell = self.tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
         switch cell {
+        case let alertControllerCell as UIAlertControllerCell:
+            alertControllerCell.configure(for: indexPath)
         case let buttonCell as UIButtonCell:
             buttonCell.configure(for: indexPath)
         case let colorCell as UIColorCell:
@@ -109,6 +112,56 @@ extension ViewController: UITableViewDelegate {
 }
 
 //MARK: -
+
+class UIAlertControllerCell: UITableViewCell {
+    static let identifier = "UIAlertControllerCell"
+
+    @IBAction func alert(button: UIButton) {
+        UIAlertController.alert(title: "Alert!", message: "Hello World").addCancelButton(title: "OK").show()
+    }
+
+    @IBAction func alertCancel(button: UIButton) {
+        UIAlertController.alert(title: "Alert", message: "Are you sure you want to continue?")
+            .addButton(title: "Yes!") { (UIAlertAction) in
+                UIAlertController.showAlert(title: "Continue!")
+            }
+            .addCancelButton()
+            .show()
+    }
+
+    @IBAction func alertDelete(button: UIButton) {
+        UIAlertController.alert(title: "Delete file?")
+            .addDestructiveButton(title: "Delete") { (UIAlertAction) in
+                UIAlertController.showAlert(title: "Deleted!")
+            }
+            .addCancelButton()
+            .show()
+    }
+
+    @IBAction func sheet(button: UIButton) {
+        UIAlertController.sheet()
+            .addButton(title: "Happy") { (UIAlertAction) in
+                UIAlertController.showAlert(title: "I am happy!")
+            }
+            .addButton(title: "Sad") { (UIAlertAction) in
+                UIAlertController.showAlert(title: "I am sad...")
+            }
+            .addCancelButton()
+            .show()
+    }
+
+    @IBAction func sheetDelete(button: UIButton) {
+        UIAlertController.sheet(title: "Delete", message: "OK to delete the file?")
+            .addDestructiveButton(title: "Delete") { (UIAlertAction) in
+                UIAlertController.showAlert(title: "Deleted!")
+            }
+            .addCancelButton()
+            .show()
+    }
+
+    func configure(for indexPath: IndexPath) {
+    }
+}
 
 class UIButtonCell: UITableViewCell {
     static let identifier = "UIButtonCell"

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D2609CDF2235FC120084794F /* Character+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2609CDE2235FC120084794F /* Character+Extension.swift */; };
+		D2609CE1223603370084794F /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2609CE0223603370084794F /* UIAlertController+Extension.swift */; };
 		D2BF1A20222ED87A00CB2DFE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BF1A1F222ED87A00CB2DFE /* AppDelegate.swift */; };
 		D2BF1A22222ED87A00CB2DFE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BF1A21222ED87A00CB2DFE /* ViewController.swift */; };
 		D2BF1A25222ED87A00CB2DFE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2BF1A23222ED87A00CB2DFE /* Main.storyboard */; };
@@ -47,6 +49,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D2609CDE2235FC120084794F /* Character+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Character+Extension.swift"; sourceTree = "<group>"; };
+		D2609CE0223603370084794F /* UIAlertController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extension.swift"; sourceTree = "<group>"; };
 		D2BF1A1C222ED87A00CB2DFE /* EveryDayExtensions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EveryDayExtensions.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2BF1A1F222ED87A00CB2DFE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2BF1A21222ED87A00CB2DFE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -147,10 +151,12 @@
 			isa = PBXGroup;
 			children = (
 				D2BF1A53222ED9EE00CB2DFE /* Array+Extension.swift */,
+				D2609CDE2235FC120084794F /* Character+Extension.swift */,
 				D2BF1A59222ED9EE00CB2DFE /* Date+Extension.swift */,
 				D2BF1A55222ED9EE00CB2DFE /* NSMutableAttributedString+Extension.swift */,
 				D2BF1A4F222ED9EE00CB2DFE /* Plist.swift */,
 				D2BF1A50222ED9EE00CB2DFE /* String+Extension.swift */,
+				D2609CE0223603370084794F /* UIAlertController+Extension.swift */,
 				D2BF1A58222ED9EE00CB2DFE /* UIButton+Extension.swift */,
 				D2BF1A57222ED9EE00CB2DFE /* UIColor+Extension.swift */,
 				D2BF1A5A222ED9EF00CB2DFE /* UIDatePicker+Extension.swift */,
@@ -296,7 +302,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2609CE1223603370084794F /* UIAlertController+Extension.swift in Sources */,
 				D2BF1A5E222ED9EF00CB2DFE /* UIView+Extension.swift in Sources */,
+				D2609CDF2235FC120084794F /* Character+Extension.swift in Sources */,
 				D2BF1A5D222ED9EF00CB2DFE /* UITextField+Extension.swift in Sources */,
 				D2BF1A65222ED9EF00CB2DFE /* Date+Extension.swift in Sources */,
 				D2BF1A5C222ED9EF00CB2DFE /* String+Extension.swift in Sources */,
