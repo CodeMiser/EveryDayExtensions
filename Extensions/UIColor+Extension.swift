@@ -37,7 +37,7 @@ extension UIColor {
         self.init(red: CGFloat(r) / CGFloat(255.0), green: CGFloat(g) / CGFloat(255.0), blue: CGFloat(b) / CGFloat(255.0), alpha: 1.0)
     }
 
-    class func color(hex: String) -> UIColor {
+    convenience init(hex: String) {
         var color = hex
         if color.hasPrefix("#") {
             color = String(hex.dropFirst())
@@ -46,16 +46,16 @@ extension UIColor {
         }
         switch color.count {
         case 1:
-            return UIColor(white: CGFloat(color.hexToDecimal) / CGFloat(16.0), alpha: 1.0)
+            self.init(white: CGFloat(color.hexToDecimal) / CGFloat(16.0), alpha: 1.0)
         case 2:
-            return UIColor(white: CGFloat(color.hexToDecimal) / CGFloat(255.0), alpha: 1.0)
+            self.init(white: CGFloat(color.hexToDecimal) / CGFloat(255.0), alpha: 1.0)
         case 6:
-            let b = color[0..<2].hexToDecimal
+            let r = color[0..<2].hexToDecimal
             let g = color[2..<4].hexToDecimal
-            let r = color[4..<6].hexToDecimal
-            return UIColor(r: r, g: g, b: b)
+            let b = color[4..<6].hexToDecimal
+            self.init(r: r, g: g, b: b)
         default:
-            return UIColor.black
+            self.init()
         }
     }
 }
@@ -64,13 +64,15 @@ extension String {
     
     var hexToDecimal: Int {
         var decimal = 0
-        for digit in self.reversed() {
+        for digit in self {
             decimal *= 16
             switch digit {
             case "0"..."9":
-                decimal += Int(digit.asciiValue! - Character("9").asciiValue!)
+                decimal += Int(digit.asciiValue! - Character("0").asciiValue!)
             case "A"..."F":
-                decimal += Int(digit.asciiValue! - Character("A").asciiValue!)
+                decimal += Int(digit.asciiValue! - Character("A").asciiValue! + 10)
+            case "a"..."f":
+                decimal += Int(digit.asciiValue! - Character("a").asciiValue! + 10)
             default:
                 return 0
             }

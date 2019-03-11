@@ -121,18 +121,18 @@
                                             <outlet property="button" destination="sBX-RN-6oH" id="AaZ-HH-fYN"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UIColorCell" id="PhH-vo-iZq" customClass="UIColorCell" customModule="EveryDayExtensions" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="156" width="375" height="64"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UIColorCell" rowHeight="128" id="PhH-vo-iZq" customClass="UIColorCell" customModule="EveryDayExtensions" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="156" width="375" height="128"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PhH-vo-iZq" id="fJ1-zA-5yd">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="63.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="127.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nRX-Ry-TdD">
-                                                    <rect key="frame" x="15" y="15" width="345" height="33.5"/>
+                                                    <rect key="frame" x="15" y="15" width="345" height="44"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UIColor.defaultTintColor" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EJy-yl-DVZ">
-                                                            <rect key="frame" x="32.5" y="6.5" width="280" height="21"/>
+                                                            <rect key="frame" x="32.5" y="11.5" width="280" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="21" id="2sh-6I-3B4"/>
                                                                 <constraint firstAttribute="width" constant="280" id="NPI-1Z-bCo"/>
@@ -144,24 +144,65 @@
                                                     </subviews>
                                                     <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="height" constant="44" id="1tc-SK-qTE"/>
                                                         <constraint firstItem="EJy-yl-DVZ" firstAttribute="centerY" secondItem="nRX-Ry-TdD" secondAttribute="centerY" id="Sde-Bp-xIi"/>
                                                         <constraint firstItem="EJy-yl-DVZ" firstAttribute="centerX" secondItem="nRX-Ry-TdD" secondAttribute="centerX" id="z3a-Zn-cIh"/>
                                                     </constraints>
                                                 </view>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="f2P-nx-uaW">
+                                                    <rect key="frame" x="15" y="67" width="345" height="44"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uRG-bm-gJM">
+                                                            <rect key="frame" x="0.0" y="0.0" width="46" height="44"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </view>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SWA-MH-uOJ">
+                                                            <rect key="frame" x="60" y="0.0" width="45.5" height="44"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </view>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MUn-Nw-zNb">
+                                                            <rect key="frame" x="119.5" y="0.0" width="46" height="44"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </view>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="evz-ab-xPi">
+                                                            <rect key="frame" x="179.5" y="0.0" width="46" height="44"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </view>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aqJ-BS-EEu">
+                                                            <rect key="frame" x="239.5" y="0.0" width="45.5" height="44"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </view>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5lQ-XU-opc">
+                                                            <rect key="frame" x="299" y="0.0" width="46" height="44"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </view>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="44" id="OQM-QH-4MI"/>
+                                                    </constraints>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="f2P-nx-uaW" firstAttribute="top" secondItem="nRX-Ry-TdD" secondAttribute="bottom" constant="8" id="Epf-ij-QsR"/>
                                                 <constraint firstAttribute="trailing" secondItem="nRX-Ry-TdD" secondAttribute="trailing" constant="15" id="FUs-go-bFv"/>
+                                                <constraint firstItem="f2P-nx-uaW" firstAttribute="leading" secondItem="fJ1-zA-5yd" secondAttribute="leadingMargin" id="cOp-KK-aes"/>
                                                 <constraint firstItem="nRX-Ry-TdD" firstAttribute="top" secondItem="fJ1-zA-5yd" secondAttribute="top" constant="15" id="ceh-aP-Xgc"/>
-                                                <constraint firstAttribute="bottom" secondItem="nRX-Ry-TdD" secondAttribute="bottom" constant="15" id="iAn-gG-C5o"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="f2P-nx-uaW" secondAttribute="trailing" id="muI-d7-4mw"/>
                                                 <constraint firstItem="nRX-Ry-TdD" firstAttribute="leading" secondItem="fJ1-zA-5yd" secondAttribute="leading" constant="15" id="ycj-IG-9T4"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="blue" destination="aqJ-BS-EEu" id="i01-2I-ZIu"/>
+                                            <outlet property="cyan" destination="evz-ab-xPi" id="u26-RC-qnJ"/>
+                                            <outlet property="green" destination="MUn-Nw-zNb" id="TO4-mX-7lN"/>
+                                            <outlet property="magenta" destination="5lQ-XU-opc" id="rmu-6R-8mM"/>
+                                            <outlet property="red" destination="uRG-bm-gJM" id="Qau-CB-JO8"/>
                                             <outlet property="view" destination="nRX-Ry-TdD" id="VqA-kl-DDS"/>
+                                            <outlet property="yellow" destination="SWA-MH-uOJ" id="ncD-29-ft4"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UIFontCell" id="alz-ce-frD" customClass="UIFontCell" customModule="EveryDayExtensions" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="220" width="375" height="64"/>
+                                        <rect key="frame" x="0.0" y="284" width="375" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="alz-ce-frD" id="vQD-Pd-p6M">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="63.5"/>
@@ -186,7 +227,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UITextFieldCell" id="u6h-bs-nPI" customClass="UITextFieldCell" customModule="EveryDayExtensions" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="284" width="375" height="64"/>
+                                        <rect key="frame" x="0.0" y="348" width="375" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="u6h-bs-nPI" id="Bpq-hW-Ity">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="63.5"/>
@@ -212,7 +253,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UIViewCell" rowHeight="256" id="pFN-xR-6wc" customClass="UIViewCell" customModule="EveryDayExtensions" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="348" width="375" height="256"/>
+                                        <rect key="frame" x="0.0" y="412" width="375" height="256"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pFN-xR-6wc" id="d47-48-u6Q">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="255.5"/>

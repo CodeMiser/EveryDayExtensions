@@ -80,8 +80,8 @@ extension ViewController: UITableViewDataSource {
         let identifier = self.identifiers[indexPath.row]
         let cell = self.tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
         switch cell {
-        case let alertControllerCell as UIAlertControllerCell:
-            alertControllerCell.configure(for: indexPath)
+//        case let alertControllerCell as UIAlertControllerCell:
+//            alertControllerCell.configure(for: indexPath)
         case let buttonCell as UIButtonCell:
             buttonCell.configure(for: indexPath)
         case let colorCell as UIColorCell:
@@ -104,6 +104,7 @@ extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         var height = 64
         switch self.identifiers[indexPath.row] {
+        case UIColorCell.identifier: height = 128
         case UIViewCell.identifier: height = 256
         default: break
         }
@@ -159,8 +160,8 @@ class UIAlertControllerCell: UITableViewCell {
             .show()
     }
 
-    func configure(for indexPath: IndexPath) {
-    }
+//    func configure(for indexPath: IndexPath) {
+//    }
 }
 
 class UIButtonCell: UITableViewCell {
@@ -188,8 +189,22 @@ class UIColorCell: UITableViewCell {
 
     @IBOutlet weak var view: UIView!
 
+    @IBOutlet weak var red: UIView!
+    @IBOutlet weak var yellow: UIView!
+    @IBOutlet weak var green: UIView!
+    @IBOutlet weak var cyan: UIView!
+    @IBOutlet weak var blue: UIView!
+    @IBOutlet weak var magenta: UIView!
+
     func configure(for indexPath: IndexPath) {
         self.view.backgroundColor = .defaultTintColor
+
+        self.red.backgroundColor = UIColor(hex: "#FF0000")
+        self.yellow.backgroundColor = UIColor(hex: "#FFFF00")
+        self.green.backgroundColor = UIColor(hex: "#00FF00")
+        self.cyan.backgroundColor = UIColor(hex: "#00FFFF")
+        self.blue.backgroundColor = UIColor(hex: "#0000FF")
+        self.magenta.backgroundColor = UIColor(hex: "#FF00FF")
     }
 }
 
