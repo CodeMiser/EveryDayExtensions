@@ -66,16 +66,8 @@ extension String {
         var decimal = 0
         for digit in self {
             decimal *= 16
-            switch digit {
-            case "0"..."9":
-                decimal += Int(digit.asciiValue! - Character("0").asciiValue!)
-            case "A"..."F":
-                decimal += Int(digit.asciiValue! - Character("A").asciiValue! + 10)
-            case "a"..."f":
-                decimal += Int(digit.asciiValue! - Character("a").asciiValue! + 10)
-            default:
-                return 0
-            }
+            guard let digitValue = digit.hexDigitValue else { return 0 }
+            decimal += digitValue
         }
         return decimal
     }

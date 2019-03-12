@@ -196,15 +196,30 @@ class UIColorCell: UITableViewCell {
     @IBOutlet weak var blue: UIView!
     @IBOutlet weak var magenta: UIView!
 
+    @IBOutlet weak var darkRed: UIView!
+    @IBOutlet weak var darkYellow: UIView!
+    @IBOutlet weak var darkGreen: UIView!
+    @IBOutlet weak var darkCyan: UIView!
+    @IBOutlet weak var darkBlue: UIView!
+    @IBOutlet weak var darkMagenta: UIView!
+
     func configure(for indexPath: IndexPath) {
         self.view.backgroundColor = .defaultTintColor
 
-        self.red.backgroundColor = UIColor(hex: "#FF0000")
-        self.yellow.backgroundColor = UIColor(hex: "#FFFF00")
-        self.green.backgroundColor = UIColor(hex: "#00FF00")
-        self.cyan.backgroundColor = UIColor(hex: "#00FFFF")
-        self.blue.backgroundColor = UIColor(hex: "#0000FF")
-        self.magenta.backgroundColor = UIColor(hex: "#FF00FF")
+        // https://en.wikipedia.org/wiki/Enhanced_Graphics_Adapter
+        self.red.backgroundColor = UIColor(hex: "#FF5555")
+        self.yellow.backgroundColor = UIColor(hex: "#FFFF55")
+        self.green.backgroundColor = UIColor(hex: "#55FF55")
+        self.cyan.backgroundColor = UIColor(hex: "#55FFFF")
+        self.blue.backgroundColor = UIColor(hex: "#5555FF")
+        self.magenta.backgroundColor = UIColor(hex: "#FF55FF")
+
+        self.darkRed.backgroundColor = UIColor(hex: "#AA0000")
+        self.darkYellow.backgroundColor = UIColor(hex: "#AAAA00")
+        self.darkGreen.backgroundColor = UIColor(hex: "#00AA00")
+        self.darkCyan.backgroundColor = UIColor(hex: "#00AAAA")
+        self.darkBlue.backgroundColor = UIColor(hex: "#0000AA")
+        self.darkMagenta.backgroundColor = UIColor(hex: "#AA0080")
     }
 }
 
