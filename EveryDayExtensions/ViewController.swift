@@ -29,7 +29,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIApplicationDelegate {
+class ViewController: UIViewController {
 
     let identifiers = [
         UIAlertControllerCell.identifier,
@@ -52,6 +52,9 @@ class ViewController: UIViewController, UIApplicationDelegate {
         self.datePicker.backgroundColor = .black
         self.datePicker.textColor = .white
     }
+}
+
+extension ViewController: UIApplicationDelegate {
 
     func applicationWillResignActive(_ application: UIApplication) {
         Log(self)
@@ -118,7 +121,7 @@ class UIAlertControllerCell: UITableViewCell {
     static let identifier = "UIAlertControllerCell"
 
     @IBAction func alert(button: UIButton) {
-        UIAlertController.alert(title: "Alert!", message: "Hello World").addCancelButton(title: "OK").show()
+        UIAlertController.alert(title: "Alert!", message: "Hello World").addButton(title: "OK").show()
     }
 
     @IBAction func alertCancel(button: UIButton) {
@@ -142,10 +145,10 @@ class UIAlertControllerCell: UITableViewCell {
     @IBAction func sheet(button: UIButton) {
         UIAlertController.sheet()
             .addButton(title: "Happy") { (UIAlertAction) in
-                UIAlertController.showAlert(title: "I am happy!")
+                UIAlertController.showAlert(title: "I am happy!", button: "Yay!")
             }
             .addButton(title: "Sad") { (UIAlertAction) in
-                UIAlertController.showAlert(title: "I am sad...")
+                UIAlertController.showAlert(title: "I am sad...", button: "Aww I'm sorry. Now I'm sad too...")
             }
             .addCancelButton()
             .show()

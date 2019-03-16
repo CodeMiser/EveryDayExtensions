@@ -37,6 +37,7 @@ extension UIColor {
         self.init(red: CGFloat(r) / CGFloat(255.0), green: CGFloat(g) / CGFloat(255.0), blue: CGFloat(b) / CGFloat(255.0), alpha: 1.0)
     }
 
+    // constructs .black if hex contains non-hex characters other than # or 0x prefix
     convenience init(hex: String) {
         var color = hex
         if color.hasPrefix("#") {
@@ -61,7 +62,8 @@ extension UIColor {
 }
 
 extension String {
-    
+
+    // returns 0 if self contains non-hex characters
     var hexToDecimal: Int {
         var decimal = 0
         for digit in self {

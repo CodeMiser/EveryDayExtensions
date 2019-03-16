@@ -10,9 +10,9 @@ import UIKit
 
 extension UIAlertController {
 
-    class func showAlert(title: String, message: String? = nil, handler: ((UIAlertAction) -> Void)? = nil) {
+    class func showAlert(title: String, message: String? = nil, button buttonTitle: String = "OK") {
         UIAlertController.alert(title: title, message: message)
-            .addCancelButton(title: "OK", handler: handler)
+            .addButton(title: buttonTitle)
             .show()
     }
 
