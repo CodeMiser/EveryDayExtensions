@@ -48,6 +48,11 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         Log(self)
 
+        StringStyles.setDefaultStyles(normal: .black, .sanFrancisco(24, .thin),
+                                      bold: .black, .sanFrancisco(24, .bold),
+                                      highlight: .red, .sanFrancisco(24, .thin),
+                                      title: .defaultTintColor, .sanFrancisco(36, .thin))
+
         self.attributedStringLabel.attributedText = "*EveryDay*Extensions\n=PURE= _Awesomeness_!".attributed()
         self.datePicker.backgroundColor = .black
         self.datePicker.textColor = .white
