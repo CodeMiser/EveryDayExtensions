@@ -43,4 +43,18 @@ extension UITextField {
             return textColor!.withAlphaComponent(UITextField.placeholderAlpha)
         }
     }
+
+    var borderColor: UIColor {
+        set {
+            self.layer.borderWidth = 1.0
+            self.layer.borderColor = newValue.cgColor
+            self.layer.cornerRadius = 4.0
+        }
+        get {
+            if let borderColor = self.layer.borderColor {
+                return UIColor(cgColor: borderColor)
+            }
+            return .clear
+        }
+    }
 }

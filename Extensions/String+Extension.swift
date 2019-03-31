@@ -31,23 +31,42 @@ import UIKit
 
 class StringStyles {
 
-    static let bold: Character = "*"
-    static let highlight: Character = "_"
-    static let title: Character = "="
+    static var defaultNormal: [NSAttributedString.Key : Any] = [.foregroundColor: UIColor.black, .font: UIFont.systemFont(ofSize: 17)]
+    static var defaultStyles: [Character: [NSAttributedString.Key : Any]] = [
+        "*": [.foregroundColor: UIColor.black, .font: UIFont.systemFont(ofSize: 17, weight: .bold)],
+        "_": [.foregroundColor: UIColor.red, .font: UIFont.systemFont(ofSize: 17)],
+        "=": [.foregroundColor: UIColor.defaultTintColor, .font: UIFont.systemFont(ofSize: 24)],
+    ]
+
+    static func setDefaultStyles(
+        normal normalColor: UIColor, _ normalFont: UIFont,
+        bold boldColor: UIColor, _ boldFont: UIFont,
+        highlight highlightColor: UIColor, _ highlightFont: UIFont,
+        title titleColor: UIColor, _ titleFont: UIFont
+        ) {
+        self.defaultNormal = [.foregroundColor: normalColor, .font: normalFont]
+        self.defaultStyles = [
+            "*": [.foregroundColor: boldColor, .font: boldFont],
+            "_": [.foregroundColor: highlightColor, .font: highlightFont],
+            "=": [.foregroundColor: titleColor, .font: titleFont]
+        ]
+    }
+
+    static func addDefaultStyle(for chracter: Character, with style: [NSAttributedString.Key : Any]) {
+        self.defaultStyles[chracter] = style
+    }
 
     var normal: [NSAttributedString.Key : Any]
-    var bold: [NSAttributedString.Key : Any]
-    var highlight: [NSAttributedString.Key : Any]
-    var title: [NSAttributedString.Key : Any]
+    var styles: [Character: [NSAttributedString.Key : Any]]
 
-    init(_ normalColor: UIColor = .black, _ normalFont: UIFont = .sanFrancisco(24, .thin),
-         bold boldColor: UIColor = .black, _ boldFont: UIFont = .sanFrancisco(24, .bold),
-         highlight highlightColor: UIColor = .red, _ highlightFont: UIFont = .sanFrancisco(24, .thin),
-         title titleColor: UIColor = .defaultTintColor, _ titleFont: UIFont = .sanFrancisco(36, .thin)) {
-        self.normal = [.foregroundColor: normalColor, .font: normalFont]
-        self.bold = [.foregroundColor: boldColor, .font: boldFont]
-        self.highlight = [.foregroundColor: highlightColor, .font: highlightFont]
-        self.title = [.foregroundColor: titleColor, .font: titleFont]
+    init() {
+        self.normal = StringStyles.defaultNormal
+        self.styles = StringStyles.defaultStyles
+    }
+
+    init(_ color: UIColor, _ font: UIFont) {
+        self.normal = [.foregroundColor: color, .font: font]
+        self.styles = [:]
     }
 }
 
@@ -77,7 +96,6 @@ extension String {
         return String(self[firstIndex..<lastIndex])
     }
 
-    //TODO: this will be replaced in Swift 5: https://www.hackingwithswift.com/articles/126/whats-new-in-swift-5-0
     func count(_ character: Character) -> Int {
         let count = self.reduce(0) { (result, char) -> Int in
             return result + (char == character ? 1 : 0)
@@ -90,21 +108,13 @@ extension String {
         return self.attributed(with: style)
     }
 
-    func attributed(with style: StringStyles = StringStyles()) -> NSAttributedString {
-
-        let attributedString = NSMutableAttributedString(string: self, attributes: style.normal)
-        
-        attributedString.enumeratePattern(StringStyles.bold) {
-            (range: NSRange) -> Void in
-            attributedString.addAttributes(style.bold, range: range)
-        }
-        attributedString.enumeratePattern(StringStyles.highlight) {
-            (range: NSRange) -> Void in
-            attributedString.addAttributes(style.highlight, range: range)
-        }
-        attributedString.enumeratePattern(StringStyles.title) {
-            (range: NSRange) -> Void in
-            attributedString.addAttributes(style.title, range: range)
+    func attributed(with styles: StringStyles = StringStyles()) -> NSAttributedString {
+        let attributedString = NSMutableAttributedString(string: self, attributes: styles.normal)
+        for (character, attributes) in styles.styles {
+            attributedString.enumeratePattern(character) {
+                (range: NSRange) -> Void in
+                attributedString.addAttributes(attributes, range: range)
+            }
         }
         return attributedString
     }

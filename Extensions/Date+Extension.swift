@@ -30,7 +30,28 @@
 import UIKit
 
 extension Date {
-    
+
+    private static var hhmmDateFormatter: DateFormatter {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        return dateFormatter
+    }
+
+    init(_ hhmm: String) {
+//        let components = hhmm.components(separatedBy: ":")
+//        assert(components.count == 2)
+//        let hour = Int(components[0]) ?? 0
+//        let minute = Int(components[1]) ?? 0
+//        self = Calendar.current.date(bySettingHour: hour, minute: minute, second: 0, of: Date())!
+        self = Date.hhmmDateFormatter.date(from: hhmm)!
+    }
+
+    var hhmm: String {
+//        let hour = self.component(.hour)
+//        let minute = self.component(.minute)
+//        return String(format: "%d:%02d", hour, minute)
+        return Date.hhmmDateFormatter.string(from: self)
+    }
     var day: Int { return self.component(.day) }
     var hour: Int { return self.component(.hour) }
 

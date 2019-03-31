@@ -31,23 +31,23 @@ import Foundation
 
 extension NSMutableAttributedString {
 
-    func enumeratePattern(_ pattern: Character = "*", using block: (NSRange) -> Void) {
+    func enumeratePattern(_ pattern: Character, using block: (NSRange) -> Void) {
         var index = self.string.startIndex
-        while index.encodedOffset < self.string.count {
+        while index < self.string.endIndex {
             guard let first = self.string[index...].firstIndex(of: pattern) else { break }
             guard let second = self.string[self.string.index(after:first)...].firstIndex(of: pattern) else { break }
-            self.removeCharacter(at: second)
-            self.removeCharacter(at: first)
-            let location = first.encodedOffset
-            let length = second.encodedOffset - first.encodedOffset - 1
+            self.remove(at: second)
+            self.remove(at: first)
+            let location = first.utf16Offset(in: self.string)
+            let length = second.utf16Offset(in: self.string) - first.utf16Offset(in: self.string) - 1
             let range = NSRange(location: location, length: length)
             block(range)
             index = self.string.index(self.string.startIndex, offsetBy: location + length)
         }
     }
 
-    func removeCharacter(at index: String.Index) {
-        let range = NSRange(location: index.encodedOffset, length: 1)
+    func remove(at index: String.Index) {
+        let range = NSRange(location: index.utf16Offset(in: self.string), length: 1)
         self.replaceCharacters(in: range, with: "")
     }
 }

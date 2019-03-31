@@ -71,4 +71,10 @@ extension UIView {
             self.alpha = 1.0
         }
     }
+
+    func setAlpha(_ alpha: CGFloat, animated: Bool) {
+        UIView.animate(withDuration: 0.25) {
+            self.alpha = alpha
+        }
+    }
 }
