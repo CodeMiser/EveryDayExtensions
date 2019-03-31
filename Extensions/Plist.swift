@@ -33,24 +33,11 @@ class Plist: NSObject {
 
     // https://stackoverflow.com/questions/24045570/how-do-i-get-a-plist-as-a-dictionary-in-swift
     static func dictionary(_ filename: String) -> [String : AnyObject] {
-        //Solution 1:
         if let path = Bundle.main.path(forResource: filename, ofType: "plist") {
             if let dictionary = NSDictionary(contentsOfFile: path) as? [String : AnyObject] {
                 return dictionary
             }
         }
-
-        //Solution 2:
-        //guard let plistPath = Bundle.main.path(forResource: "level1", ofType: "plist") else { return }
-        //guard let plistData = FileManager.default.contents(atPath: plistPath) else { return }
-        //var format = PropertyListSerialization.PropertyListFormat.xml
-        //guard let plistDict = try! PropertyListSerialization.propertyList(from: plistData, options: .mutableContainersAndLeaves, format: &format) as? [String : AnyObject] else { return }
-
-        // Solution 3:
-        //var format = PropertyListSerialization.PropertyListFormat.xml
-        //if let data = FileManager.default.contents(atPath: path), let dictionary = try? PropertyListSerialization.propertyList(from: data, options: .mutableContainersAndLeaves, format: &format) as? [String : AnyObject] {
-        //    return dictionary ?? [:]
-        //}
         return [:]
     }
 
