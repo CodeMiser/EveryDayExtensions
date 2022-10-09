@@ -42,16 +42,6 @@ extension Array {
         }
     }
 
-    //TODO: shim for Swift 5
-    // https://stackoverflow.com/questions/25398608/count-number-of-items-in-an-array-with-a-specific-property-value
-    func count(where closure: (_ element: Element) -> Bool) -> Int {
-        var count = 0
-        for element in self {
-            count += closure(element) ? 1 : 0
-        }
-        return count
-    }
-
     mutating func move(from: Int, to: Int) {
         // https://stackoverflow.com/questions/36541764/how-to-rearrange-item-of-an-array-to-new-position-in-swift
         self.insert(self.remove(at: from), at: to)
