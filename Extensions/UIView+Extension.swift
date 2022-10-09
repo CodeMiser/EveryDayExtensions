@@ -29,6 +29,8 @@
 
 import UIKit
 
+let animationDuration = 0.25
+
 extension UIView {
 
     @IBInspectable var rounded: Bool {

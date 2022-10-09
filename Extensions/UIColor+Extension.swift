@@ -59,6 +59,13 @@ extension UIColor {
             self.init()
         }
     }
+
+    convenience init(hex: Int) {
+        let r = (hex >> 16) & 0xFF
+        let g = (hex >> 8) & 0xFF
+        let b = hex & 0xFF
+        self.init(r: r, g: g, b: b)
+    }
 }
 
 extension String {

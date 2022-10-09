@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		D2609CDF2235FC120084794F /* Character+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2609CDE2235FC120084794F /* Character+Extension.swift */; };
 		D2609CE1223603370084794F /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2609CE0223603370084794F /* UIAlertController+Extension.swift */; };
+		D28F887928F32FCC00B97858 /* UITableViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28F887828F32FCA00B97858 /* UITableViewCell+Extension.swift */; };
+		D28F887B28F33FC200B97858 /* KeyboardConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28F887A28F33FC100B97858 /* KeyboardConstraint.swift */; };
 		D2BF1A20222ED87A00CB2DFE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BF1A1F222ED87A00CB2DFE /* AppDelegate.swift */; };
 		D2BF1A22222ED87A00CB2DFE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BF1A21222ED87A00CB2DFE /* ViewController.swift */; };
 		D2BF1A25222ED87A00CB2DFE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2BF1A23222ED87A00CB2DFE /* Main.storyboard */; };
@@ -20,7 +22,6 @@
 		D2BF1A5D222ED9EF00CB2DFE /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BF1A51222ED9EE00CB2DFE /* UITextField+Extension.swift */; };
 		D2BF1A5E222ED9EF00CB2DFE /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BF1A52222ED9EE00CB2DFE /* UIView+Extension.swift */; };
 		D2BF1A5F222ED9EF00CB2DFE /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BF1A53222ED9EE00CB2DFE /* Array+Extension.swift */; };
-		D2BF1A60222ED9EF00CB2DFE /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BF1A54222ED9EE00CB2DFE /* UITableView+Extension.swift */; };
 		D2BF1A61222ED9EF00CB2DFE /* NSMutableAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BF1A55222ED9EE00CB2DFE /* NSMutableAttributedString+Extension.swift */; };
 		D2BF1A62222ED9EF00CB2DFE /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BF1A56222ED9EE00CB2DFE /* UIFont+Extension.swift */; };
 		D2BF1A63222ED9EF00CB2DFE /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BF1A57222ED9EE00CB2DFE /* UIColor+Extension.swift */; };
@@ -51,6 +52,8 @@
 /* Begin PBXFileReference section */
 		D2609CDE2235FC120084794F /* Character+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Character+Extension.swift"; sourceTree = "<group>"; };
 		D2609CE0223603370084794F /* UIAlertController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extension.swift"; sourceTree = "<group>"; };
+		D28F887828F32FCA00B97858 /* UITableViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extension.swift"; sourceTree = "<group>"; };
+		D28F887A28F33FC100B97858 /* KeyboardConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardConstraint.swift; sourceTree = "<group>"; };
 		D2BF1A1C222ED87A00CB2DFE /* EveryDayExtensions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EveryDayExtensions.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2BF1A1F222ED87A00CB2DFE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2BF1A21222ED87A00CB2DFE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -67,7 +70,6 @@
 		D2BF1A51222ED9EE00CB2DFE /* UITextField+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		D2BF1A52222ED9EE00CB2DFE /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		D2BF1A53222ED9EE00CB2DFE /* Array+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
-		D2BF1A54222ED9EE00CB2DFE /* UITableView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		D2BF1A55222ED9EE00CB2DFE /* NSMutableAttributedString+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Extension.swift"; sourceTree = "<group>"; };
 		D2BF1A56222ED9EE00CB2DFE /* UIFont+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		D2BF1A57222ED9EE00CB2DFE /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
@@ -161,9 +163,10 @@
 				D2BF1A57222ED9EE00CB2DFE /* UIColor+Extension.swift */,
 				D2BF1A5A222ED9EF00CB2DFE /* UIDatePicker+Extension.swift */,
 				D2BF1A56222ED9EE00CB2DFE /* UIFont+Extension.swift */,
-				D2BF1A54222ED9EE00CB2DFE /* UITableView+Extension.swift */,
 				D2BF1A51222ED9EE00CB2DFE /* UITextField+Extension.swift */,
 				D2BF1A52222ED9EE00CB2DFE /* UIView+Extension.swift */,
+				D28F887828F32FCA00B97858 /* UITableViewCell+Extension.swift */,
+				D28F887A28F33FC100B97858 /* KeyboardConstraint.swift */,
 			);
 			name = Extensions;
 			path = /Users/markpoesch/EveryDayExtensions/Extensions;
@@ -232,14 +235,16 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1010;
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1340;
 				ORGANIZATIONNAME = "FTLapps, inc.";
 				TargetAttributes = {
 					D2BF1A1B222ED87A00CB2DFE = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = "";
 					};
 					D2BF1A2F222ED88000CB2DFE = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = "";
 						TestTargetID = D2BF1A1B222ED87A00CB2DFE;
 					};
 					D2BF1A3A222ED88000CB2DFE = {
@@ -303,10 +308,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2609CE1223603370084794F /* UIAlertController+Extension.swift in Sources */,
+				D28F887B28F33FC200B97858 /* KeyboardConstraint.swift in Sources */,
 				D2BF1A5E222ED9EF00CB2DFE /* UIView+Extension.swift in Sources */,
 				D2609CDF2235FC120084794F /* Character+Extension.swift in Sources */,
 				D2BF1A5D222ED9EF00CB2DFE /* UITextField+Extension.swift in Sources */,
 				D2BF1A65222ED9EF00CB2DFE /* Date+Extension.swift in Sources */,
+				D28F887928F32FCC00B97858 /* UITableViewCell+Extension.swift in Sources */,
 				D2BF1A5C222ED9EF00CB2DFE /* String+Extension.swift in Sources */,
 				D2BF1A63222ED9EF00CB2DFE /* UIColor+Extension.swift in Sources */,
 				D2BF1A66222ED9EF00CB2DFE /* UIDatePicker+Extension.swift in Sources */,
@@ -315,7 +322,6 @@
 				D2BF1A5F222ED9EF00CB2DFE /* Array+Extension.swift in Sources */,
 				D2BF1A22222ED87A00CB2DFE /* ViewController.swift in Sources */,
 				D2BF1A20222ED87A00CB2DFE /* AppDelegate.swift in Sources */,
-				D2BF1A60222ED9EF00CB2DFE /* UITableView+Extension.swift in Sources */,
 				D2BF1A62222ED9EF00CB2DFE /* UIFont+Extension.swift in Sources */,
 				D2BF1A61222ED9EF00CB2DFE /* NSMutableAttributedString+Extension.swift in Sources */,
 			);
@@ -397,6 +403,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -422,13 +429,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -458,6 +466,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -477,12 +486,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -492,12 +502,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = EveryDayExtensions/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.everydayextensions.EveryDay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -510,12 +522,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = EveryDayExtensions/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.everydayextensions.EveryDay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

@@ -42,8 +42,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     static let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
+    static var rootViewController: UIViewController { return AppDelegate.appDelegate.window!.rootViewController! }
+
     // https://stackoverflow.com/questions/26667009/get-top-most-uiviewcontroller
-    class func topViewController(controller: UIViewController = UIApplication.shared.keyWindow!.rootViewController!) -> UIViewController {
+    class func topViewController(controller: UIViewController = AppDelegate.rootViewController) -> UIViewController {
         if let navigationController = controller as? UINavigationController {
             return topViewController(controller: navigationController.visibleViewController!)
         }

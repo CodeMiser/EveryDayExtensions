@@ -31,18 +31,19 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    let identifiers = [
-        UIAlertControllerCell.identifier,
-        UIButtonCell.identifier,
-        UIColorCell.identifier,
-        UIFontCell.identifier,
-        UITextFieldCell.identifier,
-        UIViewCell.identifier,
+    let cellTypes: [UITableViewCell.Type] = [
+        UIAlertControllerCell.self,
+        UIButtonCell.self,
+        UIColorCell.self,
+        UIFontCell.self,
+        UITextFieldCell.self,
+        UIViewCell.self,
+        UIDatePickerButtonCell.self,
         ]
 
-    @IBOutlet weak var attributedStringLabel: UILabel!
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet private var attributedStringLabel: UILabel!
+    @IBOutlet private var tableView: UITableView!
+    @IBOutlet private var datePicker: UIDatePicker!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,10 +55,14 @@ class ViewController: UIViewController {
                                       title: .defaultTintColor, .sanFrancisco(36, .thin))
 
         self.attributedStringLabel.attributedText = "*EveryDay*Extensions\n=PURE= _Awesomeness_!".attributed()
+
         self.datePicker.backgroundColor = .black
         self.datePicker.textColor = .white
+        self.datePicker.isHidden = true
     }
 }
+
+// MARK: - UIApplicationDelegate
 
 extension ViewController: UIApplicationDelegate {
 
@@ -78,18 +83,20 @@ extension ViewController: UIApplicationDelegate {
     }
 }
 
+// MARK: - UITableViewDataSource
+
 extension ViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.identifiers.count
+        return self.cellTypes.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let identifier = self.identifiers[indexPath.row]
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
+        let cellType = self.cellTypes[indexPath.row]
+        let cell = cellType.cell(from: tableView, for: indexPath)
         switch cell {
-//        case let alertControllerCell as UIAlertControllerCell:
-//            alertControllerCell.configure(for: indexPath)
+        case let alertControllerCell as UIAlertControllerCell:
+            alertControllerCell.configure(for: indexPath)
         case let buttonCell as UIButtonCell:
             buttonCell.configure(for: indexPath)
         case let colorCell as UIColorCell:
@@ -98,8 +105,26 @@ extension ViewController: UITableViewDataSource {
             fontCell.configure(for: indexPath)
         case let textFieldCell as UITextFieldCell:
             textFieldCell.configure(for: indexPath)
+            textFieldCell.didBeginEditing = { [weak self] in
+                DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) {
+                    self?.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                }
+            }
+            textFieldCell.didTapDone = {
+                // do nothing
+            }
         case let viewCell as UIViewCell:
             viewCell.configure(for: indexPath)
+        case let datePickerButtonCell as UIDatePickerButtonCell:
+            datePickerButtonCell.configure(for: indexPath)
+            datePickerButtonCell.didTapButton = { [weak self] in
+                UIView.animate(withDuration: animationDuration) {
+                    self?.datePicker.isHidden = !(self?.datePicker.isHidden ?? false)
+                }
+                DispatchQueue.main.async {
+                    self?.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+                }
+            }
         default:
             break
         }
@@ -107,23 +132,9 @@ extension ViewController: UITableViewDataSource {
     }
 }
 
-extension ViewController: UITableViewDelegate {
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        var height = 64
-        switch self.identifiers[indexPath.row] {
-        case UIColorCell.identifier: height = 128
-        case UIViewCell.identifier: height = 256
-        default: break
-        }
-        return CGFloat(height);
-    }
-}
-
-//MARK: -
+//MARK: - UIAlertControllerCell
 
 class UIAlertControllerCell: UITableViewCell {
-    static let identifier = "UIAlertControllerCell"
 
     @IBAction func alert(button: UIButton) {
         UIAlertController.alert(title: "Alert!", message: "Hello World").addButton(title: "OK").show()
@@ -168,48 +179,50 @@ class UIAlertControllerCell: UITableViewCell {
             .show()
     }
 
-//    func configure(for indexPath: IndexPath) {
-//    }
+    func configure(for indexPath: IndexPath) {
+        // no configuration change
+    }
 }
 
-class UIButtonCell: UITableViewCell {
-    static let identifier = "UIButtonCell"
+// MARK: - UIButtonCell
 
-    @IBOutlet weak var button: UIButton!
+class UIButtonCell: UITableViewCell {
+
+    @IBOutlet private var button: UIButton!
 
     @IBAction func tap(button: UIButton) {
-        button.isEnabled = !button.isEnabled
+        button.isEnabled = false
 
-        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { (timer) in
+        Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { (timer) in
             button.isEnabled = true
         }
     }
 
     func configure(for indexPath: IndexPath) {
-        let darkBlue = UIColor(red: 0, green: 122.0/255.0 * 0.5, blue: 0.5, alpha: 1.0)
-        self.button.title = "self.button.textColor = (.white, darkBlue)"
-        self.button.textColor = (.white, darkBlue)
+        self.button.title = "self.button.textColor = (.white, .darkGray)"
+        self.button.textColor = (.white, .darkGray)
     }
 }
 
+// MARK: - UIColorCell
+
 class UIColorCell: UITableViewCell {
-    static let identifier = "UIColorCell"
 
-    @IBOutlet weak var view: UIView!
+    @IBOutlet private var view: UIView!
 
-    @IBOutlet weak var red: UIView!
-    @IBOutlet weak var yellow: UIView!
-    @IBOutlet weak var green: UIView!
-    @IBOutlet weak var cyan: UIView!
-    @IBOutlet weak var blue: UIView!
-    @IBOutlet weak var magenta: UIView!
+    @IBOutlet private var red: UIView!
+    @IBOutlet private var yellow: UIView!
+    @IBOutlet private var green: UIView!
+    @IBOutlet private var cyan: UIView!
+    @IBOutlet private var blue: UIView!
+    @IBOutlet private var magenta: UIView!
 
-    @IBOutlet weak var darkRed: UIView!
-    @IBOutlet weak var darkYellow: UIView!
-    @IBOutlet weak var darkGreen: UIView!
-    @IBOutlet weak var darkCyan: UIView!
-    @IBOutlet weak var darkBlue: UIView!
-    @IBOutlet weak var darkMagenta: UIView!
+    @IBOutlet private var darkRed: UIView!
+    @IBOutlet private var darkYellow: UIView!
+    @IBOutlet private var darkGreen: UIView!
+    @IBOutlet private var darkCyan: UIView!
+    @IBOutlet private var darkBlue: UIView!
+    @IBOutlet private var darkMagenta: UIView!
 
     func configure(for indexPath: IndexPath) {
         self.view.backgroundColor = .defaultTintColor
@@ -222,49 +235,80 @@ class UIColorCell: UITableViewCell {
         self.blue.backgroundColor = UIColor(hex: "#5555FF")
         self.magenta.backgroundColor = UIColor(hex: "#FF55FF")
 
-        self.darkRed.backgroundColor = UIColor(hex: "#AA0000")
-        self.darkYellow.backgroundColor = UIColor(hex: "#AAAA00")
-        self.darkGreen.backgroundColor = UIColor(hex: "#00AA00")
-        self.darkCyan.backgroundColor = UIColor(hex: "#00AAAA")
-        self.darkBlue.backgroundColor = UIColor(hex: "#0000AA")
-        self.darkMagenta.backgroundColor = UIColor(hex: "#AA0080")
+        self.darkRed.backgroundColor = UIColor(hex: 0xAA0000)
+        self.darkYellow.backgroundColor = UIColor(hex: 0xAAAA00)
+        self.darkGreen.backgroundColor = UIColor(hex: 0x00AA00)
+        self.darkCyan.backgroundColor = UIColor(hex: 0x00AAAA)
+        self.darkBlue.backgroundColor = UIColor(hex: 0x0000AA)
+        self.darkMagenta.backgroundColor = UIColor(hex: 0xAA0080)
     }
 }
 
-class UIFontCell: UITableViewCell {
-    static let identifier = "UIFontCell"
+// MARK: - UIFontCell
 
-    @IBOutlet weak var fontLabel: UILabel!
+class UIFontCell: UITableViewCell {
+
+    @IBOutlet private var fontLabel: UILabel!
 
     func configure(for indexPath: IndexPath) {
         self.fontLabel.font = UIFont.sanFrancisco(24, .thin)
     }
 }
 
-class UITextFieldCell: UITableViewCell, UITextFieldDelegate {
-    static let identifier = "UITextFieldCell"
+// MARK: - UITextFieldCell
 
-    @IBOutlet weak var textField: UITextField!
+class UITextFieldCell: UITableViewCell, UITextFieldDelegate {
+
+    var didBeginEditing: (() -> Void)?
+    var didTapDone: (() -> Void)?
+
+    @IBOutlet private var textField: UITextField!
 
     func configure(for indexPath: IndexPath) {
         self.textField.delegate = self
         self.textField.placeholderTextColor = .white
     }
 
+    // MARK: - UITextFieldDelegate
+
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.didBeginEditing?()
+    }
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.textField.resignFirstResponder()
+
+        self.didTapDone?()
         return true
     }
 }
 
-class UIViewCell: UITableViewCell {
-    static let identifier = "UIViewCell"
+// MARK: - UIViewCell
 
-    @IBOutlet weak var roundedView: UIView!
-    @IBOutlet weak var cornerRadiusView: UIView!
+class UIViewCell: UITableViewCell {
+
+    @IBOutlet private var roundedView: UIView!
+    @IBOutlet private var cornerRadiusView: UIView!
 
     func configure(for indexPath: IndexPath) {
-        self.roundedView.rounded = true
-        self.cornerRadiusView.cornerRadius = 32
+        //self.roundedView.rounded = true
+        //self.cornerRadiusView.cornerRadius = 32
+    }
+}
+
+// MARK: - UIDatePickerButtonCell {
+
+class UIDatePickerButtonCell: UITableViewCell {
+
+    var didTapButton: (() -> Void)?
+
+    @IBOutlet private var toggleDataPickerButton: UIButton!
+
+    func configure(for indexPath: IndexPath) {
+        // nothing to configure
+    }
+
+    @IBAction func toggleDatePicker(button: UIButton) {
+        self.didTapButton?()
     }
 }
