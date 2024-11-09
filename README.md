@@ -11,9 +11,9 @@ Small moves... maybe it'll grow up to be a ~Pod~ SPM library some day.
 
 ## Requirements
 
-- iOS 12+
-- Xcode 10+
-- Swift 4.x
+- iOS 16+
+- Xcode 15+
+- Swift 5.x
 
 ## Documentation
 
@@ -23,7 +23,7 @@ Documentation is [available online](https://github.com/CodeMiser/EveryDayExtensi
 
 ## Installation
 
-Just clone the project, open the project, build and run!
+Just clone the repo, open the project, build and run!
 
 ## License
 
