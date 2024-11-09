@@ -6,7 +6,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2019 FTLapps, Inc.
+// Copyright (c) 2022 FTLapps LLC
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -42,39 +42,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    //MARK: - EveryDayExtensions
-
     static let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
     static var rootViewController: UIViewController { return AppDelegate.appDelegate.window!.rootViewController! }
 
-    // https://stackoverflow.com/questions/26667009/get-top-most-uiviewcontroller
-    class func topViewController(controller: UIViewController = AppDelegate.rootViewController) -> UIViewController {
-        if let navigationController = controller as? UINavigationController {
-            return topViewController(controller: navigationController.visibleViewController!)
-        }
-        if let tabController = controller as? UITabBarController {
-            if let selected = tabController.selectedViewController {
-                return topViewController(controller: selected)
-            }
-        }
-        if let presented = controller.presentedViewController {
-            return topViewController(controller: presented)
-        }
-        return controller
-    }
-
-    class func invokeTopViewController(_ selector: Selector) {
-        let controller = AppDelegate.topViewController()
-        if controller.responds(to: selector) {
-            controller.performSelector(onMainThread: selector, with: nil, waitUntilDone: true)
-        }
-    }
-
-    //MARK: - UIApplicationDelegate handoff to topViewController
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         Log(self)
+
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        self.window?.rootViewController = AppCoordinator.shared.rootViewController
+        self.window?.makeKeyAndVisible()
+        AppCoordinator.shared.start()
+
         // Override point for customization after application launch.
         return true
     }
@@ -108,5 +87,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         Log(self)
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+
+    //MARK: - UIApplicationDelegate handoff to topViewController
+
+    static func invokeTopViewController(_ selector: Selector) {
+        let controller = AppDelegate.topViewController()
+        if controller.responds(to: selector) {
+            controller.performSelector(onMainThread: selector, with: nil, waitUntilDone: true)
+        }
+    }
+
+    // https://stackoverflow.com/questions/26667009/get-top-most-uiviewcontroller
+    static func topViewController(controller: UIViewController = AppDelegate.rootViewController) -> UIViewController {
+        if let navigationController = controller as? UINavigationController {
+            return topViewController(controller: navigationController.visibleViewController!)
+        }
+        if let tabController = controller as? UITabBarController {
+            if let selected = tabController.selectedViewController {
+                return topViewController(controller: selected)
+            }
+        }
+        if let presented = controller.presentedViewController {
+            return topViewController(controller: presented)
+        }
+        return controller
     }
 }

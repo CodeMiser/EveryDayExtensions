@@ -1,8 +1,9 @@
 //
-//  Plist.swift
+//  AppCoordinator.swift
 //  EveryDayExtensions
 //
-//  Created by Mark Poesch on 2/22/19.
+//  Created by Mark Poesch on 4/15/22.
+//  Inspired by Bart Jacobs, https://cocoacasts.com
 //
 // The MIT License (MIT)
 //
@@ -27,27 +28,16 @@
 // SOFTWARE.
 //
 
-import Foundation
+import UIKit
 
-class Plist: NSObject {
+class AppCoordinator: Coordinator {
 
-    // https://stackoverflow.com/questions/24045570/how-do-i-get-a-plist-as-a-dictionary-in-swift
-    static func dictionary(_ filename: String) -> [String : AnyObject] {
-        if let path = Bundle.main.path(forResource: filename, ofType: "plist") {
-            if let dictionary = NSDictionary(contentsOfFile: path) as? [String : AnyObject] {
-                return dictionary
-            }
-        }
-        return [:]
-    }
+    static let shared = AppCoordinator()
 
-    static func array(from filename: String) -> [AnyObject] {
-        let key = filename.lowercased()
-        let dictionary = Plist.dictionary(filename)
-        return dictionary[key]  as! [AnyObject]
-    }
+    let rootViewController = NavigationController()
 
-    static func strings(from filename: String) -> [String] {
-        return Plist.array(from: filename)  as! [String]
+    override func start() {
+        let vc = StartupViewController.makeFromStoryboard()
+        AppDelegate.rootViewController.present(vc, animated: false)
     }
 }

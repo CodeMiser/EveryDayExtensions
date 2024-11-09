@@ -1,8 +1,8 @@
 //
-//  Plist.swift
+//  NavigationController.swift
 //  EveryDayExtensions
 //
-//  Created by Mark Poesch on 2/22/19.
+//  Created by Mark Poesch on 9/5/21.
 //
 // The MIT License (MIT)
 //
@@ -27,27 +27,25 @@
 // SOFTWARE.
 //
 
-import Foundation
+import UIKit
 
-class Plist: NSObject {
+class NavigationController: UINavigationController {
 
-    // https://stackoverflow.com/questions/24045570/how-do-i-get-a-plist-as-a-dictionary-in-swift
-    static func dictionary(_ filename: String) -> [String : AnyObject] {
-        if let path = Bundle.main.path(forResource: filename, ofType: "plist") {
-            if let dictionary = NSDictionary(contentsOfFile: path) as? [String : AnyObject] {
-                return dictionary
-            }
-        }
-        return [:]
-    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
 
-    static func array(from filename: String) -> [AnyObject] {
-        let key = filename.lowercased()
-        let dictionary = Plist.dictionary(filename)
-        return dictionary[key]  as! [AnyObject]
-    }
+        self.navigationBar.barStyle = .black // barStyle is required to ensure the correct content state on iPhone SE3
+        self.navigationBar.prefersLargeTitles = true
+        self.navigationItem.largeTitleDisplayMode = .always // specified in the StartupViewController Scene
+   }
 
-    static func strings(from filename: String) -> [String] {
-        return Plist.array(from: filename)  as! [String]
+//    override var preferredStatusBarStyle: UIStatusBarStyle {
+//        return Styling.statusBarStyle
+//    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+
+        self.navigationBar.barStyle = .black
     }
 }

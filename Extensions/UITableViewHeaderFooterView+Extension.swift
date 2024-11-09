@@ -27,7 +27,6 @@
 // SOFTWARE.
 //
 
-
 import UIKit
 
 extension UITableViewHeaderFooterView {

@@ -1,8 +1,9 @@
 //
-//  Plist.swift
+//  Coordinator.swift
 //  EveryDayExtensions
 //
-//  Created by Mark Poesch on 2/22/19.
+//  Created by Mark Poesch on 4/15/22.
+//  Inspired by Bart Jacobs, https://cocoacasts.com
 //
 // The MIT License (MIT)
 //
@@ -27,27 +28,32 @@
 // SOFTWARE.
 //
 
-import Foundation
+import UIKit
 
-class Plist: NSObject {
+class Coordinator: NSObject, UINavigationControllerDelegate {
 
-    // https://stackoverflow.com/questions/24045570/how-do-i-get-a-plist-as-a-dictionary-in-swift
-    static func dictionary(_ filename: String) -> [String : AnyObject] {
-        if let path = Bundle.main.path(forResource: filename, ofType: "plist") {
-            if let dictionary = NSDictionary(contentsOfFile: path) as? [String : AnyObject] {
-                return dictionary
-            }
+    var didFinish: ((Coordinator) -> Void)?
+
+    var childCoordinators: [Coordinator] = []
+
+    func start() {}
+
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {}
+    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {}
+
+    func pushCoordinator(_ coordinator: Coordinator) {
+        coordinator.didFinish = { [weak self] (coordinator) in
+            self?.popCoordinator(coordinator)
         }
-        return [:]
+
+        coordinator.start()
+
+        childCoordinators.append(coordinator)
     }
 
-    static func array(from filename: String) -> [AnyObject] {
-        let key = filename.lowercased()
-        let dictionary = Plist.dictionary(filename)
-        return dictionary[key]  as! [AnyObject]
-    }
-
-    static func strings(from filename: String) -> [String] {
-        return Plist.array(from: filename)  as! [String]
+    func popCoordinator(_ coordinator: Coordinator) {
+        if let index = childCoordinators.firstIndex(where: { $0 === coordinator }) {
+            childCoordinators.remove(at: index)
+        }
     }
 }
