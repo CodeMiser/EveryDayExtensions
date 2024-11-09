@@ -1,12 +1,12 @@
 //
-//  UIButton+Extension.swift
-//  EveryDayExtensions
+//  UIViewController+Extension.swift
+//  EveryDay
 //
-//  Created by Mark Poesch on 1/12/19.
+//  Created by Mark on 9/29/24.
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2022 FTLapps LLC
+// Copyright (c) 2024 FTLapps LLC
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -29,24 +29,20 @@
 
 import UIKit
 
-extension UIButton {
+extension UIViewController {
 
-    var title: String {
-        set {
-            self.setTitle(newValue, for: .normal)
-        }
-        get {
-            return self.titleLabel!.text!
-        }
-    }
+    func setBackButtonSelector(_ selector: Selector) {
+        let backButtonTitle = self.navigationController?.viewControllers.dropLast().last?.navigationItem.title ?? "Back"
 
-    var textColor: (UIColor, UIColor) {
-        set {
-            self.setTitleColor(newValue.0, for: .normal)
-            self.setTitleColor(newValue.1, for: .disabled)
-        }
-        get {
-            return (self.titleColor(for: .normal)!, self.titleColor(for: .disabled)!)
-        }
+        var config = UIButton.Configuration.plain()
+        config.image = UIImage(systemName: "chevron.backward")?.withConfiguration(UIImage.SymbolConfiguration(weight: .semibold))
+        config.title = backButtonTitle
+        config.imagePadding = 4.667
+        config.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: -15.667, bottom: 0, trailing: 0)
+
+        let backButton = UIButton(type: .system)
+        backButton.configuration = config
+        backButton.addTarget(self, action: selector, for: .touchUpInside)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
     }
 }

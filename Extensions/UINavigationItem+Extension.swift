@@ -1,12 +1,12 @@
 //
-//  UIButton+Extension.swift
-//  EveryDayExtensions
+//  UINavigationItem+Extension.swift
+//  EveryDay
 //
-//  Created by Mark Poesch on 1/12/19.
+//  Created by Mark on 9/29/24.
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2022 FTLapps LLC
+// Copyright (c) 2024 FTLapps LLC
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -29,24 +29,9 @@
 
 import UIKit
 
-extension UIButton {
+extension UINavigationItem {
 
-    var title: String {
-        set {
-            self.setTitle(newValue, for: .normal)
-        }
-        get {
-            return self.titleLabel!.text!
-        }
-    }
-
-    var textColor: (UIColor, UIColor) {
-        set {
-            self.setTitleColor(newValue.0, for: .normal)
-            self.setTitleColor(newValue.1, for: .disabled)
-        }
-        get {
-            return (self.titleColor(for: .normal)!, self.titleColor(for: .disabled)!)
-        }
+    func remove(_ button: UIBarButtonItem) {
+        self.rightBarButtonItems?.remove(object: button)
     }
 }

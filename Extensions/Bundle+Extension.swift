@@ -1,8 +1,8 @@
 //
-//  UIButton+Extension.swift
-//  EveryDayExtensions
+//  Bundle+Extension.swift
+//  EveryDay
 //
-//  Created by Mark Poesch on 1/12/19.
+//  Created by Mark Poesch on 4/15/22.
 //
 // The MIT License (MIT)
 //
@@ -27,26 +27,11 @@
 // SOFTWARE.
 //
 
-import UIKit
+import Foundation
 
-extension UIButton {
+extension Bundle {
 
-    var title: String {
-        set {
-            self.setTitle(newValue, for: .normal)
-        }
-        get {
-            return self.titleLabel!.text!
-        }
-    }
-
-    var textColor: (UIColor, UIColor) {
-        set {
-            self.setTitleColor(newValue.0, for: .normal)
-            self.setTitleColor(newValue.1, for: .disabled)
-        }
-        get {
-            return (self.titleColor(for: .normal)!, self.titleColor(for: .disabled)!)
-        }
+    var appVersion: String {
+        return  Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
     }
 }

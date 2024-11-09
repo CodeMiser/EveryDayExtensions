@@ -1,12 +1,12 @@
 //
-//  UIButton+Extension.swift
-//  EveryDayExtensions
+//  NetworkCache.swift
+//  NovelEditor
 //
-//  Created by Mark Poesch on 1/12/19.
+//  Created by Mark on 11/5/24.
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2022 FTLapps LLC
+// Copyright (c) 2024 FTLapps LLC
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,26 +27,39 @@
 // SOFTWARE.
 //
 
-import UIKit
+import Foundation
 
-extension UIButton {
+enum CacheType {
+    case memory
+    case disk
+}
 
-    var title: String {
-        set {
-            self.setTitle(newValue, for: .normal)
-        }
-        get {
-            return self.titleLabel!.text!
+class NetworkCache {
+
+    private var cache: [String: Data] = [:]
+    
+    func save(_ data: Data, forKey key: String, cacheType: CacheType) {
+        switch cacheType {
+        case .memory:
+            cache[key] = data
+        case .disk:
+            cache[key] = data
+            UserDefaults.standard.set(data, forKey: key)
         }
     }
 
-    var textColor: (UIColor, UIColor) {
-        set {
-            self.setTitleColor(newValue.0, for: .normal)
-            self.setTitleColor(newValue.1, for: .disabled)
+    func load(forKey key: String, cacheType: CacheType) -> Data? {
+        if let data = cache[key] {
+            return data
         }
-        get {
-            return (self.titleColor(for: .normal)!, self.titleColor(for: .disabled)!)
+        if cacheType == .disk, let data = UserDefaults.standard.data(forKey: key) {
+            cache[key] = data
+            return data
         }
+        return nil
+    }
+
+    func purge() {
+        self.cache.removeAll()
     }
 }

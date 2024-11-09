@@ -1,12 +1,12 @@
 //
-//  UIButton+Extension.swift
-//  EveryDayExtensions
+//  NetworkAPI.swift
+//  NovelEditor
 //
-//  Created by Mark Poesch on 1/12/19.
+//  Created by Mark on 11/3/24.
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2022 FTLapps LLC
+// Copyright (c) 2024 FTLapps LLC
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,26 +27,17 @@
 // SOFTWARE.
 //
 
-import UIKit
+import Foundation
 
-extension UIButton {
+let api = NetworkAPI()
 
-    var title: String {
-        set {
-            self.setTitle(newValue, for: .normal)
-        }
-        get {
-            return self.titleLabel!.text!
-        }
-    }
+struct NetworkAPI {
 
-    var textColor: (UIColor, UIColor) {
-        set {
-            self.setTitleColor(newValue.0, for: .normal)
-            self.setTitleColor(newValue.1, for: .disabled)
-        }
-        get {
-            return (self.titleColor(for: .normal)!, self.titleColor(for: .disabled)!)
-        }
+    var session: NetworkSession
+    var cache: NetworkCache
+
+    init(baseUrl: String = "https://api.openai.com") {
+        self.session = NetworkSession.init(baseUrl: baseUrl)
+        self.cache = NetworkCache()
     }
 }

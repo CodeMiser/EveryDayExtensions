@@ -1,8 +1,8 @@
 //
-//  UIButton+Extension.swift
-//  EveryDayExtensions
+//  DateComponents+Extension.swift
+//  EveryDay
 //
-//  Created by Mark Poesch on 1/12/19.
+//  Created by Mark Poesch on 5/27/19.
 //
 // The MIT License (MIT)
 //
@@ -27,26 +27,15 @@
 // SOFTWARE.
 //
 
-import UIKit
+import Foundation
 
-extension UIButton {
+extension DateComponents {
 
-    var title: String {
-        set {
-            self.setTitle(newValue, for: .normal)
-        }
-        get {
-            return self.titleLabel!.text!
-        }
-    }
+    init(timeInterval: TimeInterval) {
+        self.init()
 
-    var textColor: (UIColor, UIColor) {
-        set {
-            self.setTitleColor(newValue.0, for: .normal)
-            self.setTitleColor(newValue.1, for: .disabled)
-        }
-        get {
-            return (self.titleColor(for: .normal)!, self.titleColor(for: .disabled)!)
-        }
+        self.second = timeInterval.secondsComponent
+        self.minute = timeInterval.minutesComponent
+        self.hour = timeInterval.hours
     }
 }

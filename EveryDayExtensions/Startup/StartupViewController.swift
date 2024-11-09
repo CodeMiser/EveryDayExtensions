@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  StartupViewController.swift
 //  EveryDayExtensions
 //
 //  Created by Mark Poesch on 3/5/19.
@@ -29,9 +29,15 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class StartupViewController: UIViewController, Storyboardable {
 
-    let cellTypes: [UITableViewCell.Type] = [
+    static var storyboardName: String { "Startup" }
+
+    @IBOutlet private var attributedStringLabel: UILabel!
+    @IBOutlet private var tableView: UITableView!
+    @IBOutlet private var datePicker: UIDatePicker!
+
+    private let cellTypes: [UITableViewCell.Type] = [
         UIAlertControllerCell.self,
         UIButtonCell.self,
         UIColorCell.self,
@@ -39,11 +45,7 @@ class ViewController: UIViewController {
         UITextFieldCell.self,
         UIViewCell.self,
         UIDatePickerButtonCell.self,
-        ]
-
-    @IBOutlet private var attributedStringLabel: UILabel!
-    @IBOutlet private var tableView: UITableView!
-    @IBOutlet private var datePicker: UIDatePicker!
+    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,7 +66,7 @@ class ViewController: UIViewController {
 
 // MARK: - UIApplicationDelegate
 
-extension ViewController: UIApplicationDelegate {
+extension StartupViewController: UIApplicationDelegate {
 
     func applicationWillResignActive(_ application: UIApplication) {
         Log(self)
@@ -85,7 +87,7 @@ extension ViewController: UIApplicationDelegate {
 
 // MARK: - UITableViewDataSource
 
-extension ViewController: UITableViewDataSource {
+extension StartupViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.cellTypes.count
@@ -296,7 +298,7 @@ class UIViewCell: UITableViewCell {
     }
 }
 
-// MARK: - UIDatePickerButtonCell {
+// MARK: - UIDatePickerButtonCell
 
 class UIDatePickerButtonCell: UITableViewCell {
 

@@ -1,8 +1,8 @@
 //
-//  UIButton+Extension.swift
-//  EveryDayExtensions
+//  UITableViewHeaderFooterView+Extension.swift
+//  EveryDay
 //
-//  Created by Mark Poesch on 1/12/19.
+//  Created by Mark Poesch on 3/22/20.
 //
 // The MIT License (MIT)
 //
@@ -27,26 +27,19 @@
 // SOFTWARE.
 //
 
+
 import UIKit
 
-extension UIButton {
+extension UITableViewHeaderFooterView {
 
-    var title: String {
-        set {
-            self.setTitle(newValue, for: .normal)
-        }
-        get {
-            return self.titleLabel!.text!
-        }
+    static func register(with tableView: UITableView) {
+        let reuseIdentifier = String(describing: Self.self)
+        let nib = UINib(nibName: String(describing: Self.self), bundle: nil)
+        tableView.register(nib, forHeaderFooterViewReuseIdentifier: reuseIdentifier)
     }
 
-    var textColor: (UIColor, UIColor) {
-        set {
-            self.setTitleColor(newValue.0, for: .normal)
-            self.setTitleColor(newValue.1, for: .disabled)
-        }
-        get {
-            return (self.titleColor(for: .normal)!, self.titleColor(for: .disabled)!)
-        }
+    static func cell(from tableView: UITableView) -> Self {
+        let identifier = String(describing: Self.self)
+        return tableView.dequeueReusableHeaderFooterView(withIdentifier: identifier) as! Self
     }
 }

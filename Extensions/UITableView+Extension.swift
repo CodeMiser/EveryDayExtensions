@@ -1,8 +1,8 @@
 //
-//  UIButton+Extension.swift
-//  EveryDayExtensions
+//  UITableView+Extension.swift
+//  EveryDay
 //
-//  Created by Mark Poesch on 1/12/19.
+//  Created by Mark Poesch on 10/29/22.
 //
 // The MIT License (MIT)
 //
@@ -29,24 +29,28 @@
 
 import UIKit
 
-extension UIButton {
+extension UITableView {
 
-    var title: String {
-        set {
-            self.setTitle(newValue, for: .normal)
-        }
-        get {
-            return self.titleLabel!.text!
+    func scrollToTop(animated: Bool) {
+        DispatchQueue.main.async {
+            let top = CGPoint(x: 0, y: -44)
+            self.setContentOffset(top, animated: animated)
         }
     }
 
-    var textColor: (UIColor, UIColor) {
-        set {
-            self.setTitleColor(newValue.0, for: .normal)
-            self.setTitleColor(newValue.1, for: .disabled)
-        }
-        get {
-            return (self.titleColor(for: .normal)!, self.titleColor(for: .disabled)!)
+    func scrollToBottom(animated: Bool){
+        DispatchQueue.main.async {
+            var section = self.numberOfSections - 1
+            while section > 0 {
+                let rows = self.numberOfRows(inSection: section)
+                if rows > 0 {
+                    let row = rows - 1
+                    let indexPath = IndexPath(row: row, section: section)
+                    self.scrollToRow(at: indexPath, at: .bottom, animated: animated)
+                    return
+                }
+                section -= 1
+            }
         }
     }
 }

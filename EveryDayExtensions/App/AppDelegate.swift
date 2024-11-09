@@ -33,6 +33,10 @@ func Log(_ me: Any, functionName: String = #function) {
     NSLog("\(String(describing: type(of: me))).\(functionName)")
 }
 
+func LogTimestamp(_ message: String) {
+    NSLog("\(Date().iso8601String) \(message)")
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

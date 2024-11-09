@@ -1,8 +1,9 @@
 //
-//  UIButton+Extension.swift
-//  EveryDayExtensions
+//  Storyboardable.swift
+//  EveryDay
 //
-//  Created by Mark Poesch on 1/12/19.
+//  Created by Mark Poesch on 4/15/22.
+//  Inspired by Bart Jacobs, https://cocoacasts.com
 //
 // The MIT License (MIT)
 //
@@ -29,24 +30,35 @@
 
 import UIKit
 
-extension UIButton {
+protocol Storyboardable {
 
-    var title: String {
-        set {
-            self.setTitle(newValue, for: .normal)
-        }
-        get {
-            return self.titleLabel!.text!
-        }
+    static var storyboardName: String { get }
+
+    static var storyboardBundle: Bundle { get }
+    static var storyboardIdentifier: String { get }
+
+    static func makeFromStoryboard() -> Self
+}
+
+extension Storyboardable where Self: UIViewController {
+
+    static var storyboardName: String {
+        return "Main"
     }
 
-    var textColor: (UIColor, UIColor) {
-        set {
-            self.setTitleColor(newValue.0, for: .normal)
-            self.setTitleColor(newValue.1, for: .disabled)
+    static var storyboardBundle: Bundle {
+        return .main
+    }
+
+    static var storyboardIdentifier: String {
+        return String(describing: self)
+    }
+
+    static func makeFromStoryboard() -> Self {
+        let storyboard = UIStoryboard(name: self.storyboardName, bundle: self.storyboardBundle)
+        guard let viewController = storyboard.instantiateViewController(withIdentifier: self.storyboardIdentifier) as? Self else {
+            fatalError("Unable to Instantiate View Controller With Storyboard Identifier \(storyboardIdentifier)")
         }
-        get {
-            return (self.titleColor(for: .normal)!, self.titleColor(for: .disabled)!)
-        }
+        return viewController
     }
 }

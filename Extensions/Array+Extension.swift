@@ -6,7 +6,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2019 FTLapps, Inc.
+// Copyright (c) 2022 FTLapps LLC
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -36,7 +36,6 @@ extension Array {
     }
 
     mutating func remove(object: Any) {
-
         if let index = self.index(of: object) {
             self.remove(at: index)
         }

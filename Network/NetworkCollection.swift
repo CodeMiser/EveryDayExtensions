@@ -1,12 +1,12 @@
 //
-//  UIButton+Extension.swift
-//  EveryDayExtensions
+//  NetworkCollection.swift
+//  NovelEditor
 //
-//  Created by Mark Poesch on 1/12/19.
+//  Created by Mark on 11/4/24.
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2022 FTLapps LLC
+// Copyright (c) 2024 FTLapps LLC
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,26 +27,32 @@
 // SOFTWARE.
 //
 
-import UIKit
+import Foundation
 
-extension UIButton {
+class NetworkCollection<Item: Decodable>: NetworkResponse {
 
-    var title: String {
-        set {
-            self.setTitle(newValue, for: .normal)
-        }
-        get {
-            return self.titleLabel!.text!
-        }
+    var items: [Item]
+    var lastPage: Int
+    var perPage: Int
+    var page: Int
+    var total: Int
+
+    init(perPage: Int) {
+        self.items = []
+        self.lastPage = 0
+        self.perPage = perPage
+        self.page = 0
+        self.total = 0
     }
 
-    var textColor: (UIColor, UIColor) {
-        set {
-            self.setTitleColor(newValue.0, for: .normal)
-            self.setTitleColor(newValue.1, for: .disabled)
-        }
-        get {
-            return (self.titleColor(for: .normal)!, self.titleColor(for: .disabled)!)
+    func append(collection: NetworkCollection<Item>) {
+        self.items.append(contentsOf: collection.items)
+        if self.page == 0 {
+            self.lastPage = collection.lastPage
+            self.page = collection.page
+            self.total = collection.total
+        } else {
+            self.page = collection.page
         }
     }
 }

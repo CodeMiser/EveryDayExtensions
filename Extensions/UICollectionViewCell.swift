@@ -1,8 +1,8 @@
 //
-//  UIButton+Extension.swift
-//  EveryDayExtensions
+//  UICollectionViewCell.swift
+//  EveryDay
 //
-//  Created by Mark Poesch on 1/12/19.
+//  Created by Mark Poesch on 3/30/21.
 //
 // The MIT License (MIT)
 //
@@ -29,24 +29,10 @@
 
 import UIKit
 
-extension UIButton {
+extension UICollectionViewCell {
 
-    var title: String {
-        set {
-            self.setTitle(newValue, for: .normal)
-        }
-        get {
-            return self.titleLabel!.text!
-        }
-    }
-
-    var textColor: (UIColor, UIColor) {
-        set {
-            self.setTitleColor(newValue.0, for: .normal)
-            self.setTitleColor(newValue.1, for: .disabled)
-        }
-        get {
-            return (self.titleColor(for: .normal)!, self.titleColor(for: .disabled)!)
-        }
+    static func cell(from collectionView: UICollectionView, for indexPath: IndexPath) -> Self {
+        let identifier = String(describing: Self.self)
+        return collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! Self
     }
 }

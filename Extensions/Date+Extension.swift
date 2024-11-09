@@ -6,7 +6,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2019 FTLapps, Inc.
+// Copyright (c) 2022 FTLapps LLC
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,9 +27,22 @@
 // SOFTWARE.
 //
 
-import UIKit
+import Foundation
 
 extension Date {
+
+    func priorToToday() -> Bool {
+        let now = Date()
+        return self.day != now.day && self.timeIntervalSince(now) < 0
+    }
+
+    init(_ hhmm: String) {
+        self = Date.hhmmDateFormatter.date(from: hhmm)!
+    }
+
+    var hhmmString: String {
+        return Date.hhmmDateFormatter.string(from: self)
+    }
 
     private static var hhmmDateFormatter: DateFormatter {
         let dateFormatter = DateFormatter()
@@ -37,20 +50,17 @@ extension Date {
         return dateFormatter
     }
 
-    init(_ hhmm: String) {
-        self = Date.hhmmDateFormatter.date(from: hhmm)!
+    var iso8601String: String {
+        return ISO8601DateFormatter.string(from: self, timeZone: .current, formatOptions: .withInternetDateTime)
     }
 
-    var hhmm: String {
-        return Date.hhmmDateFormatter.string(from: self)
-    }
     var day: Int { return self.component(.day) }
+
     var hour: Int { return self.component(.hour) }
 
-    func priorToToday() -> Bool {
-        let now = Date()
-        return self.day != now.day && self.timeIntervalSince(now) < 0
-    }
+    var minute: Int { return self.component(.minute) }
+
+    var second: Int { return self.component(.second) }
 
     private func component(_ component: Calendar.Component) -> Int {
         // https://stackoverflow.com/questions/32649039/formatting-time-of-the-day-swift-morning-afternoon-evening-any-time
