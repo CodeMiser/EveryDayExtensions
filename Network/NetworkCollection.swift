@@ -31,28 +31,23 @@ import Foundation
 
 class NetworkCollection<Item: Decodable>: NetworkResponse {
 
+    var hasMore: Bool?
     var items: [Item]
-    var lastPage: Int
-    var perPage: Int
-    var page: Int
-    var total: Int
+    //let perPage: Int
+    //let lastPage: Int
+    let page: Int?
+    //let total: Int
 
-    init(perPage: Int) {
+    init() {
+        self.hasMore = true
         self.items = []
-        self.lastPage = 0
-        self.perPage = perPage
-        self.page = 0
-        self.total = 0
+        self.page = 1
     }
 
     func append(collection: NetworkCollection<Item>) {
         self.items.append(contentsOf: collection.items)
-        if self.page == 0 {
-            self.lastPage = collection.lastPage
-            self.page = collection.page
-            self.total = collection.total
-        } else {
-            self.page = collection.page
+        if let hasMore = collection.hasMore {
+            self.hasMore = hasMore
         }
     }
 }

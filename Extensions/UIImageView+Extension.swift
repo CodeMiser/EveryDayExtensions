@@ -1,8 +1,8 @@
 //
-//  NetworkAPI.swift
-//  NovelEditor
+//  UIImageView+Extension.swift
+//  EveryDayExtensions
 //
-//  Created by Mark on 11/3/24.
+//  Created by Mark on 11/10/24.
 //
 // The MIT License (MIT)
 //
@@ -27,19 +27,27 @@
 // SOFTWARE.
 //
 
-import Foundation
+import UIKit
 
-let api = NetworkAPI()
+extension UIImageView {
 
-struct NetworkAPI {
+    func setImage(urlString: String, placeholderString: String) {
+        self.image = UIImage(named: placeholderString)
 
-    var session: NetworkSession
-    var cache: NetworkCache
+        guard let url = URL(string: urlString) else {
+            if let image = UIImage(named: urlString) {
+                self.image = image
+            }
+            return
+        }
 
-    init() {
-        self.session = NetworkSession(baseUrl: "https://api.stackexchange.com")
-        self.session.setHttpHeaderField("Accept", "application/json")
-
-        self.cache = NetworkCache()
+        URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
+            guard let self, let data, error == nil, let downloadedImage = UIImage(data: data) else {
+                return
+            }
+            DispatchQueue.main.async {
+                self.image = downloadedImage
+            }
+        }.resume()
     }
 }

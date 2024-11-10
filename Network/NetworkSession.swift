@@ -39,7 +39,7 @@ class NetworkSession {
         self.headers = [:]
     }
 
-    func setHeader(field: String, value: String) {
+    func setHttpHeaderField(_ field: String, _ value: String) {
         self.headers[field] = value
     }
 
@@ -51,14 +51,20 @@ class NetworkSession {
 
         let task = URLSession.shared.dataTask(with: urlRequest) { (data: Data?, response: URLResponse?, error: Error?) in
             if let error {
-                completion(nil, .unknown(error))
+                DispatchQueue.main.async {
+                    completion(nil, .unknown(error))
+                }
                 return
             }
             guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
-                completion(nil, .serverError(statusCode: (response as? HTTPURLResponse)?.statusCode ?? -1))
+                DispatchQueue.main.async {
+                    completion(nil, .serverError(statusCode: (response as? HTTPURLResponse)?.statusCode ?? -1))
+                }
                 return
             }
-            completion(data, nil)
+            DispatchQueue.main.async {
+                completion(data, nil)
+            }
         }
         task.resume()
     }

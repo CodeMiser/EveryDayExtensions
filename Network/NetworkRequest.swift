@@ -40,24 +40,31 @@ class NetworkRequest {
     }
     private let method: Method
     private let path: String
+    private var parameters: [String: Any]
     private var body: Data?
 
     init(_ method: Method, _ path: String, parameters: [String : Any]) {
         self.method = method
         self.path = path
-        self.body = try? JSONSerialization.data(withJSONObject: parameters, options: [])
+        self.parameters = parameters
+        if method != .GET {
+            self.body = try? JSONSerialization.data(withJSONObject: parameters, options: [])
+        }
     }
 
     init(_ method: Method, _ path: String, model: Encodable) {
+        assert(method != .GET, "GET requests must not have a body")
         self.method = method
         self.path = path
+        self.parameters = [:]
         self.body = try? JSONEncoder().encode(model)
     }
 
-    init(_ method: Method, _ path: String) {
+    init(_ method: Method, _ path: String) { // for use with NetworkCollection
         self.method = method
         self.path = path
-        self.body = nil // body will be constructed with collection parameters during request execution
+        self.parameters = [:]
+        self.body = nil
     }
 }
 
@@ -69,14 +76,23 @@ extension NetworkRequest {
         }
     }
 
-    func executePaging<Item: Decodable>(collection: NetworkCollection<Item>, completion: @escaping (NetworkCollection<Item>?) -> Void) {
+    func executePaging<Item: Decodable>(collection: NetworkCollection<Item>, perPage: Int, completion: @escaping (NetworkCollection<Item>?) -> Void) {
+        if let hasMore = collection.hasMore, !hasMore {
+            completion(collection)
+            return
+        }
         let parameters: [String: Any] = [
-            "page": collection.page == 0 ? 1 : collection.page + 1,
-            "perPage": collection.perPage
+            "page": collection.page ?? 1,
+            "pageSize": perPage
+            //"perPage": perPage
         ]
-        self.body = try? JSONSerialization.data(withJSONObject: parameters)
+        if self.method == .GET {
+            self.parameters = parameters
+        } else {
+            self.body = try? JSONSerialization.data(withJSONObject: parameters)
+        }
         self.execute { (response: NetworkCollection<Item>?) in
-            if let response, response.perPage == collection.perPage {
+            if let response {
                 collection.append(collection: response)
                 completion(collection)
             } else {
@@ -112,7 +128,7 @@ extension NetworkRequest {
             }
 
             guard let response = T(data: data) else {
-                print("Response: \(String(data: data, encoding: .utf8) ?? "<Empty>")")
+                //print("Response: \(String(data: data, encoding: .utf8) ?? "<Empty>")")
                 completion(nil, .decodingFailed)
                 return
             }
@@ -134,14 +150,24 @@ extension NetworkRequest {
     // MARK: - NetworkSession helper
 
     func asURLRequest(baseURL: String, headers: [String: String]) -> URLRequest? {
-        guard let url = URL(string: baseURL + path) else {
-            return nil
-        }
+        guard let url = method == .GET
+                ? self.constructURL(baseURL: baseURL, path: self.path, parameters: self.parameters)
+                : URL(string: baseURL + self.path)
+        else { return nil }
 
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
         request.httpBody = body
         headers.forEach { request.setValue($1, forHTTPHeaderField: $0) }
         return request
+    }
+
+    private func constructURL(baseURL: String, path: String, parameters: [String: Any]) -> URL {
+        assert(path.first == "/", "path must start with '/'")
+        guard method == .GET, var urlComponents = URLComponents(string: baseURL + path) else {
+            return URL(string: path)!
+        }
+        urlComponents.queryItems = parameters.map { URLQueryItem(name: "\($0)", value: "\($1)") }
+        return urlComponents.url ?? URL(string: path)!
     }
 }

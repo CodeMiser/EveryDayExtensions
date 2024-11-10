@@ -55,6 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AppCoordinator.shared.start()
 
         // Override point for customization after application launch.
+
         return true
     }
 

@@ -62,6 +62,13 @@ class StartupViewController: UIViewController, Storyboardable {
         self.datePicker.textColor = .white
         self.datePicker.isHidden = true
     }
+
+    // MARK: - Actions
+
+    @IBAction private func overflow(barButtonItem: UIBarButtonItem) {
+        let vc = OverflowViewController.makeFromStoryboard()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 // MARK: - UIApplicationDelegate
