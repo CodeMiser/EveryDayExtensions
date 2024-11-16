@@ -10,13 +10,11 @@ import Foundation
 
 extension NetworkAPI {
 
-    func fetchUsers(completion: @escaping (OverflowUsers?) -> Void) {
+    func fetchUsers(page: Int, pageSize: Int, completion: @escaping (OverflowUsers?) -> Void) {
         NetworkRequest(.GET, "/2.3/users", parameters: [
             "order": "desc",
-            "pagesize": 1,
-            //"page": page,
             "site": "stackoverflow",
             "sort": "reputation",
-        ]).execute(completion: completion)
+        ]).executePaging(page: page, pageSize: pageSize, completion: completion)
     }
 }

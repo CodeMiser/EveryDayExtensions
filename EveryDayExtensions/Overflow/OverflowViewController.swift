@@ -14,22 +14,54 @@ class OverflowViewController: UIViewController, Storyboardable {
 
     @IBOutlet private var tableView: UITableView!
 
-    private var overflowUsers: [OverflowUser] = []
-
-//    required init?(coder: NSCoder) {
-//        super.init(coder: coder)
-//    }
+    private var overflowUsers =  OverflowUsers()
+    private var currentPage = 1
+    private let pageSize = 20
+    private var totalPages = Int.max // will be adjusted based on `hasMore` or `total`
+    private var isFetching: Set<Int> = [] // track pages currently being fetched
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.fetchOverflowUsers()
+        self.fetchOverflowUsers(page: self.currentPage)
     }
 
-    private func fetchOverflowUsers() {
-        api.fetchUsers { (overflowUsers: OverflowUsers?) in
-            self.overflowUsers = overflowUsers?.items ?? []
-            self.tableView.reloadData()
+    private func fetchOverflowUsers(page: Int) {
+        guard !isFetching.contains(page), page < self.totalPages else { return }
+
+        api.fetchUsers(page: page, pageSize: self.pageSize) { (overflowUsers: OverflowUsers?) in
+            self.isFetching.remove(page)
+
+            if let overflowUsers {
+                self.totalPages = overflowUsers.hasNoMorePages ? page : Int.max
+                self.overflowUsers.append(collection: overflowUsers)
+                self.tableView.reloadData()
+            }
+        }
+    }
+}
+
+// MARK: - UITableViewDelegate
+
+extension OverflowViewController: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let user = self.overflowUsers.items[indexPath.row]
+        let vc = OverflowUserViewController.makeFromStoryboard()
+        vc.user = user
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+// MARK: - UITableViewDataSourcePrefetching
+
+extension OverflowViewController: UITableViewDataSourcePrefetching {
+
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        let threshold = self.overflowUsers.items.count - 5
+        if indexPaths.contains(where: { $0.row >= threshold }) {
+            self.fetchOverflowUsers(page: self.currentPage + 1)
+            self.currentPage += 1
         }
     }
 }
@@ -39,21 +71,15 @@ class OverflowViewController: UIViewController, Storyboardable {
 extension OverflowViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.overflowUsers.count
+        return self.overflowUsers.items.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let user = self.overflowUsers[indexPath.row]
+        let user = self.overflowUsers.items[indexPath.row]
         let cell = OverflowUserCell.cell(from: tableView, for: indexPath) as! OverflowUserCell
         cell.configure(user: user)
         return cell
     }
-}
-
-// MARK: - UITableViewDelegate
-
-extension OverflowViewController: UITableViewDelegate {
-    // Placeholder for UITableViewDelegate methods if needed
 }
 
 // MARK: - OverflowUserCell

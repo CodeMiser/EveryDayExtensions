@@ -31,8 +31,10 @@ import UIKit
 
 extension UIImageView {
 
-    func setImage(urlString: String, placeholderString: String) {
+    func setImage(urlString: String?, placeholderString: String) {
         self.image = UIImage(named: placeholderString)
+
+        guard let urlString else { return }
 
         guard let url = URL(string: urlString) else {
             if let image = UIImage(named: urlString) {

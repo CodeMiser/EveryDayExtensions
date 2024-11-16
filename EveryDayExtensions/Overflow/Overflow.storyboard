@@ -87,6 +87,7 @@
                                 <connections>
                                     <outlet property="dataSource" destination="Y6W-OH-hqX" id="ZHa-G6-hPc"/>
                                     <outlet property="delegate" destination="Y6W-OH-hqX" id="geI-Ce-GcL"/>
+                                    <outlet property="prefetchDataSource" destination="Y6W-OH-hqX" id="lve-kN-SLP"/>
                                 </connections>
                             </tableView>
                         </subviews>

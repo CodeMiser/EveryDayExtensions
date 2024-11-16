@@ -76,25 +76,22 @@ extension NetworkRequest {
         }
     }
 
-    func executePaging<Item: Decodable>(collection: NetworkCollection<Item>, perPage: Int, completion: @escaping (NetworkCollection<Item>?) -> Void) {
-        if let hasMore = collection.hasMore, !hasMore {
-            completion(collection)
-            return
-        }
-        let parameters: [String: Any] = [
-            "page": collection.page ?? 1,
-            "pageSize": perPage
-            //"perPage": perPage
-        ]
-        if self.method == .GET {
-            self.parameters = parameters
-        } else {
+//    func executePaging<Item: Decodable>(collection: NetworkCollection<Item>, pageSize: Int, completion: @escaping (NetworkCollection<Item>?) -> Void) {
+    func executePaging<Item: Decodable>(page: Int, pageSize: Int, completion: @escaping (NetworkCollection<Item>?) -> Void) {
+//        if collection.hasNoMorePages {
+//            completion(collection)
+//            return
+//        }
+//        let page = collection.items.count / pageSize + 1
+        self.parameters["page"] = page
+        self.parameters["pagesize"] = pageSize
+        if self.method != .GET {
             self.body = try? JSONSerialization.data(withJSONObject: parameters)
         }
         self.execute { (response: NetworkCollection<Item>?) in
             if let response {
-                collection.append(collection: response)
-                completion(collection)
+//                collection.append(collection: response)
+                completion(response)
             } else {
                 completion(nil)
             }
@@ -150,14 +147,16 @@ extension NetworkRequest {
     // MARK: - NetworkSession helper
 
     func asURLRequest(baseURL: String, headers: [String: String]) -> URLRequest? {
-        guard let url = method == .GET
-                ? self.constructURL(baseURL: baseURL, path: self.path, parameters: self.parameters)
-                : URL(string: baseURL + self.path)
+        guard let url = (
+            method == .GET
+            ? self.constructURL(baseURL: baseURL, path: self.path, parameters: self.parameters)
+            : URL(string: baseURL + self.path)
+        )
         else { return nil }
 
         var request = URLRequest(url: url)
-        request.httpMethod = method.rawValue
-        request.httpBody = body
+        request.httpMethod = self.method.rawValue
+        request.httpBody = self.body
         headers.forEach { request.setValue($1, forHTTPHeaderField: $0) }
         return request
     }
