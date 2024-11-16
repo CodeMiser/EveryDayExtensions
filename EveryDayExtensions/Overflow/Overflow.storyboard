@@ -14,11 +14,11 @@
             <objects>
                 <viewController storyboardIdentifier="OverflowViewController" id="Y6W-OH-hqX" customClass="OverflowViewController" customModule="EveryDayExtensions" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="749"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="DsE-6R-nUV">
-                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="715"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="OverflowUserCell" id="tUP-zJ-Eob" customClass="OverflowUserCell" customModule="EveryDayExtensions" customModuleProvider="target">
@@ -36,7 +36,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="hEw-lC-Pc1">
-                                                    <rect key="frame" x="88" y="8" width="104.66666666666669" height="67"/>
+                                                    <rect key="frame" x="88" y="8" width="289" height="67"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Display Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BfF-nP-yJd">
                                                             <rect key="frame" x="0.0" y="0.0" width="104.66666666666667" height="20.333333333333332"/>
@@ -58,8 +58,8 @@
                                                         </label>
                                                     </subviews>
                                                 </stackView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reputation Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QGc-Jh-qVY" userLabel="Reputation Label">
-                                                    <rect key="frame" x="248.66666666666663" y="7.9999999999999982" width="128.33333333333337" height="20.333333333333329"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reputation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QGc-Jh-qVY" userLabel="Reputation Label">
+                                                    <rect key="frame" x="294.33333333333331" y="7.9999999999999982" width="82.666666666666686" height="20.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -70,6 +70,7 @@
                                                 <constraint firstItem="hEw-lC-Pc1" firstAttribute="top" secondItem="z8q-qD-7Nm" secondAttribute="top" constant="8" id="93K-7M-itQ"/>
                                                 <constraint firstAttribute="bottom" secondItem="RcU-u9-vVX" secondAttribute="bottom" constant="8" id="ClB-yu-PoJ"/>
                                                 <constraint firstItem="hEw-lC-Pc1" firstAttribute="leading" secondItem="RcU-u9-vVX" secondAttribute="trailing" constant="8" id="In9-ce-5gQ"/>
+                                                <constraint firstAttribute="trailing" secondItem="hEw-lC-Pc1" secondAttribute="trailing" constant="16" id="Pns-vb-z6c"/>
                                                 <constraint firstItem="QGc-Jh-qVY" firstAttribute="top" secondItem="z8q-qD-7Nm" secondAttribute="top" constant="8" id="URL-p5-geQ"/>
                                                 <constraint firstItem="RcU-u9-vVX" firstAttribute="top" secondItem="z8q-qD-7Nm" secondAttribute="top" constant="8" id="la7-EK-e8n"/>
                                                 <constraint firstItem="RcU-u9-vVX" firstAttribute="leading" secondItem="z8q-qD-7Nm" secondAttribute="leading" constant="16" id="njf-jH-zAm"/>
@@ -100,6 +101,7 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="DsE-6R-nUV" secondAttribute="bottom" id="tq1-aG-q6S"/>
                         </constraints>
                     </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="tableView" destination="DsE-6R-nUV" id="LS3-fI-03d"/>
                     </connections>
@@ -107,6 +109,104 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="118" y="5"/>
+        </scene>
+        <!--Overflow User View Controller-->
+        <scene sceneID="CyK-gr-4r1">
+            <objects>
+                <viewController storyboardIdentifier="OverflowUserViewController" id="ede-w4-G8U" customClass="OverflowUserViewController" customModule="EveryDayExtensions" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nR5-9v-7ye">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="749"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YIa-Cc-Whj">
+                                <rect key="frame" x="16" y="16" width="361" height="361"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="YIa-Cc-Whj" secondAttribute="height" multiplier="1:1" id="LZb-Le-9xo"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="EFB-S5-Ldm">
+                                <rect key="frame" x="16" y="397" width="361" height="190.33333333333337"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Display Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fwd-HS-zfk">
+                                        <rect key="frame" x="0.0" y="0.0" width="104.66666666666667" height="20.333333333333332"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Id" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Zf-BE-qz0">
+                                        <rect key="frame" x="0.0" y="28.333333333333371" width="54.666666666666664" height="20.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jC9-S8-8RR">
+                                        <rect key="frame" x="0.0" y="56.666666666666636" width="65.333333333333329" height="20.333333333333336"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accept Rate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r08-6p-rnX">
+                                        <rect key="frame" x="0.0" y="85" width="92.666666666666671" height="20.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Badge Counts Gold" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x54-lD-7hR">
+                                        <rect key="frame" x="0.0" y="113.33333333333337" width="148" height="20.333333333333343"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Badge Counts Silver" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AVG-se-gbj">
+                                        <rect key="frame" x="0.0" y="141.66666666666663" width="154" height="20.333333333333343"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Badge Counts Bronze" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lP9-Yn-8GE">
+                                        <rect key="frame" x="0.0" y="170" width="165.66666666666666" height="20.333333333333343"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reputation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z21-zT-ET1" userLabel="Reputation Label">
+                                <rect key="frame" x="294.33333333333331" y="393" width="82.666666666666686" height="20.333333333333314"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="2GZ-wH-QDA"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="2GZ-wH-QDA" firstAttribute="trailing" secondItem="YIa-Cc-Whj" secondAttribute="trailing" constant="16" id="6bf-Iv-4Ho"/>
+                            <constraint firstItem="z21-zT-ET1" firstAttribute="top" secondItem="YIa-Cc-Whj" secondAttribute="bottom" constant="16" id="Cgn-hY-c3B"/>
+                            <constraint firstItem="YIa-Cc-Whj" firstAttribute="leading" secondItem="2GZ-wH-QDA" secondAttribute="leading" constant="16" id="Noq-XW-KiZ"/>
+                            <constraint firstItem="YIa-Cc-Whj" firstAttribute="top" secondItem="2GZ-wH-QDA" secondAttribute="top" constant="16" id="T1X-89-m3W"/>
+                            <constraint firstItem="EFB-S5-Ldm" firstAttribute="top" secondItem="YIa-Cc-Whj" secondAttribute="bottom" constant="20" id="Ui2-ee-fuv"/>
+                            <constraint firstItem="2GZ-wH-QDA" firstAttribute="trailing" secondItem="EFB-S5-Ldm" secondAttribute="trailing" constant="16" id="VlF-tf-Ggb"/>
+                            <constraint firstItem="EFB-S5-Ldm" firstAttribute="leading" secondItem="2GZ-wH-QDA" secondAttribute="leading" constant="16" id="tnE-yN-aaV"/>
+                            <constraint firstItem="2GZ-wH-QDA" firstAttribute="trailing" secondItem="z21-zT-ET1" secondAttribute="trailing" constant="16" id="zHd-QI-8Gk"/>
+                        </constraints>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="acceptRateLabel" destination="r08-6p-rnX" id="a10-VY-seb"/>
+                        <outlet property="badgeCountsBronzeLabel" destination="lP9-Yn-8GE" id="ISb-8Y-hfk"/>
+                        <outlet property="badgeCountsGoldLabel" destination="x54-lD-7hR" id="45H-9T-9bE"/>
+                        <outlet property="badgeCountsSilverLabel" destination="AVG-se-gbj" id="JtF-Ry-vJR"/>
+                        <outlet property="displayNameLabel" destination="fwd-HS-zfk" id="ax3-4c-Zbo"/>
+                        <outlet property="locationLabel" destination="jC9-S8-8RR" id="T6B-CH-XqJ"/>
+                        <outlet property="profileImageView" destination="YIa-Cc-Whj" id="Geg-x3-6uh"/>
+                        <outlet property="reputationLabel" destination="z21-zT-ET1" id="7oh-r9-doj"/>
+                        <outlet property="userIdLabel" destination="8Zf-BE-qz0" id="20o-Wo-CNI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xBN-zN-YVB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="843.51145038167931" y="4.9295774647887329"/>
         </scene>
     </scenes>
     <resources>

@@ -47,6 +47,7 @@
 		4D9DCB0F2CE11DFF00EF8CE2 /* Overflow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D9DCB0E2CE11DFF00EF8CE2 /* Overflow.storyboard */; };
 		4D9DCB112CE11F0100EF8CE2 /* OverflowUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9DCB102CE11F0100EF8CE2 /* OverflowUsers.swift */; };
 		4D9DCB132CE3838C00EF8CE2 /* OverflowUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9DCB122CE3838C00EF8CE2 /* OverflowUserViewController.swift */; };
+		4D9DCB152CE8EBE700EF8CE2 /* Components.md in Resources */ = {isa = PBXBuildFile; fileRef = 4D9DCB142CE8EBE700EF8CE2 /* Components.md */; };
 		D2BF1A20222ED87A00CB2DFE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BF1A1F222ED87A00CB2DFE /* AppDelegate.swift */; };
 		D2BF1A22222ED87A00CB2DFE /* StartupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BF1A21222ED87A00CB2DFE /* StartupViewController.swift */; };
 		D2BF1A27222ED88000CB2DFE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2BF1A26222ED88000CB2DFE /* Assets.xcassets */; };
@@ -96,6 +97,7 @@
 		4D9DCB0E2CE11DFF00EF8CE2 /* Overflow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Overflow.storyboard; sourceTree = "<group>"; };
 		4D9DCB102CE11F0100EF8CE2 /* OverflowUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverflowUsers.swift; sourceTree = "<group>"; };
 		4D9DCB122CE3838C00EF8CE2 /* OverflowUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverflowUserViewController.swift; sourceTree = "<group>"; };
+		4D9DCB142CE8EBE700EF8CE2 /* Components.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Components.md; sourceTree = "<group>"; };
 		D2BF1A1C222ED87A00CB2DFE /* EveryDayExtensions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EveryDayExtensions.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2BF1A1F222ED87A00CB2DFE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2BF1A21222ED87A00CB2DFE /* StartupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartupViewController.swift; sourceTree = "<group>"; };
@@ -207,10 +209,11 @@
 		D2BF1A13222ED87A00CB2DFE = {
 			isa = PBXGroup;
 			children = (
-				4D9DCAD32CE0109300EF8CE2 /* Extensions */,
-				4D9DCADA2CE0109300EF8CE2 /* Network */,
 				D2BF1A67222EDA1800CB2DFE /* README.md */,
 				D2BF1A68222EDA1800CB2DFE /* LICENSE.txt */,
+				4D9DCB142CE8EBE700EF8CE2 /* Components.md */,
+				4D9DCAD32CE0109300EF8CE2 /* Extensions */,
+				4D9DCADA2CE0109300EF8CE2 /* Network */,
 				D2BF1A1E222ED87A00CB2DFE /* EveryDayExtensions */,
 				D2BF1A1D222ED87A00CB2DFE /* Products */,
 			);
@@ -296,6 +299,7 @@
 			files = (
 				D2BF1A2A222ED88000CB2DFE /* LaunchScreen.storyboard in Resources */,
 				D2BF1A27222ED88000CB2DFE /* Assets.xcassets in Resources */,
+				4D9DCB152CE8EBE700EF8CE2 /* Components.md in Resources */,
 				4D9DCB0F2CE11DFF00EF8CE2 /* Overflow.storyboard in Resources */,
 				D2BF1A69222EDA1800CB2DFE /* README.md in Resources */,
 				D2BF1A6A222EDA1800CB2DFE /* LICENSE.txt in Resources */,

@@ -34,8 +34,14 @@ class OverflowViewController: UIViewController, Storyboardable {
 
             if let overflowUsers {
                 self.totalPages = overflowUsers.hasNoMorePages ? page : Int.max
+                let startIndex = self.overflowUsers.items.count
                 self.overflowUsers.append(collection: overflowUsers)
-                self.tableView.reloadData()
+                let endIndex = self.overflowUsers.items.count - 1
+                let indexPaths = (startIndex...endIndex).map { IndexPath(row: $0, section: 0) }
+                self.tableView.performBatchUpdates {
+                    self.tableView.insertRows(at: indexPaths, with: .fade)
+                }
+                //self.tableView.reloadData()
             }
         }
     }
@@ -46,6 +52,8 @@ class OverflowViewController: UIViewController, Storyboardable {
 extension OverflowViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
         let user = self.overflowUsers.items[indexPath.row]
         let vc = OverflowUserViewController.makeFromStoryboard()
         vc.user = user
@@ -58,7 +66,8 @@ extension OverflowViewController: UITableViewDelegate {
 extension OverflowViewController: UITableViewDataSourcePrefetching {
 
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        let threshold = self.overflowUsers.items.count - 5
+        let margin = 5
+        let threshold = self.overflowUsers.items.count - margin
         if indexPaths.contains(where: { $0.row >= threshold }) {
             self.fetchOverflowUsers(page: self.currentPage + 1)
             self.currentPage += 1
@@ -96,7 +105,7 @@ class OverflowUserCell: UITableViewCell {
         self.nameLabel.text = user.displayName
         self.userIdLabel.text = "User ID: \(user.userId)"
         self.locationLabel.text = "\(user.location ?? "")"
-        self.reputationLabel.text = "Reputation: \(user.reputation)"
+        self.reputationLabel.text = "\(user.reputation)"
         if let imageUrl = user.profileImage {
             self.profileImageView.setImage(urlString: imageUrl, placeholderString: "")
         }

@@ -2,7 +2,7 @@
 //  NetworkRequest.swift
 //  NovelEditor
 //
-//  Created by Mark on 11/3/24.
+//  Created by Mark & 4o on 11/3/24.
 //
 // The MIT License (MIT)
 //

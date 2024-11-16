@@ -2,7 +2,7 @@
 //  NetworkSession.swift
 //  NovelEditor
 //
-//  Created by Mark on 11/3/24.
+//  Created by Mark & 4o on 11/3/24.
 //
 // The MIT License (MIT)
 //
@@ -31,6 +31,8 @@ import Foundation
 
 class NetworkSession {
 
+    private let networkLinkConditionerResponseDelay: TimeInterval = 1.0
+
     private let baseUrl: String
     private var headers: [String: String]
 
@@ -45,24 +47,22 @@ class NetworkSession {
 
     func perform(request: NetworkRequest, completion: @escaping (Data?, NetworkError?) -> Void) {
         guard let urlRequest = request.asURLRequest(baseURL: self.baseUrl, headers: self.headers) else {
-            completion(nil, .invalidURL)
+            DispatchQueue.main.asyncAfter(deadline: .now() + self.networkLinkConditionerResponseDelay) {
+                completion(nil, .invalidURL)
+            }
             return
         }
 
         let task = URLSession.shared.dataTask(with: urlRequest) { (data: Data?, response: URLResponse?, error: Error?) in
-            if let error {
-                DispatchQueue.main.async {
+            DispatchQueue.main.asyncAfter(deadline: .now() + self.networkLinkConditionerResponseDelay) {
+                if let error {
                     completion(nil, .unknown(error))
+                    return
                 }
-                return
-            }
-            guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
-                DispatchQueue.main.async {
+                guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
                     completion(nil, .serverError(statusCode: (response as? HTTPURLResponse)?.statusCode ?? -1))
+                    return
                 }
-                return
-            }
-            DispatchQueue.main.async {
                 completion(data, nil)
             }
         }
