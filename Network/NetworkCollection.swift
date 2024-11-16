@@ -31,7 +31,7 @@ import Foundation
 
 class NetworkCollection<Item: Decodable>: NetworkResponse {
 
-    private var hasMore: Bool?
+    var hasMore: Bool
     var items: [Item]
     //let perPage: Int
     //let lastPage: Int
@@ -41,16 +41,5 @@ class NetworkCollection<Item: Decodable>: NetworkResponse {
     init() {
         self.hasMore = true
         self.items = []
-    }
-
-    func append(collection: NetworkCollection<Item>) {
-        self.items.append(contentsOf: collection.items)
-        if let hasMore = collection.hasMore {
-            self.hasMore = hasMore
-        }
-    }
-
-    var hasNoMorePages: Bool {
-        return !(self.hasMore ?? true)
     }
 }

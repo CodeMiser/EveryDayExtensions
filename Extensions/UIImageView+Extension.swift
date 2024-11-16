@@ -2,7 +2,7 @@
 //  UIImageView+Extension.swift
 //  EveryDayExtensions
 //
-//  Created by Mark on 11/10/24.
+//  Created by Mark & 4o on 11/10/24.
 //
 // The MIT License (MIT)
 //

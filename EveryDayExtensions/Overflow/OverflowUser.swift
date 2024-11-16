@@ -1,12 +1,12 @@
 //
-//  UICollectionViewCell.swift
-//  EveryDay
+//  OverflowUser.swift
+//  EveryDayExtensions
 //
-//  Created by Mark Poesch on 3/30/21.
+//  Created by Mark on 11/10/24.
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2021 FTLapps LLC
+// Copyright (c) 2024 FTLapps LLC
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,12 +27,19 @@
 // SOFTWARE.
 //
 
-import UIKit
+import Foundation
 
-extension UICollectionViewCell {
-
-    static func cell(from collectionView: UICollectionView, for indexPath: IndexPath) -> Self {
-        let identifier = String(describing: Self.self)
-        return collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! Self
+class OverflowUser: Decodable {
+    let acceptRate: Int?
+    struct BadgeCounts: Decodable {
+        let bronze: Int
+        let gold: Int
+        let silver: Int
     }
+    let badgeCounts: BadgeCounts
+    let displayName: String
+    let location: String?
+    let profileImage: String? // avatar icon is nil unless requested
+    let reputation: Int
+    let userId: Int
 }

@@ -76,23 +76,24 @@ extension NetworkRequest {
         }
     }
 
-//    func executePaging<Item: Decodable>(collection: NetworkCollection<Item>, pageSize: Int, completion: @escaping (NetworkCollection<Item>?) -> Void) {
-    func executePaging<Item: Decodable>(page: Int, pageSize: Int, completion: @escaping (NetworkCollection<Item>?) -> Void) {
-//        if collection.hasNoMorePages {
-//            completion(collection)
-//            return
-//        }
-//        let page = collection.items.count / pageSize + 1
-        self.parameters["page"] = page
-        self.parameters["pagesize"] = pageSize
-        if self.method != .GET {
-            self.body = try? JSONSerialization.data(withJSONObject: parameters)
+    func executePaging<Item: Decodable>(collection: NetworkPagingCollection<Item>, completion: @escaping (NetworkPagingCollection<Item>?) -> Void) {
+        guard collection.shouldFetchPage else {
+            completion(nil)
+            return
         }
-        self.execute { (response: NetworkCollection<Item>?) in
-            if let response {
-//                collection.append(collection: response)
-                completion(response)
+
+        collection.startFetchingPage()
+
+        self.parameters += collection.pagingParameters
+        if self.method != .GET {
+            self.body = try? JSONSerialization.data(withJSONObject: self.parameters)
+        }
+        self.execute { (newCollection: NetworkCollection<Item>?) in
+            if let newCollection {
+                collection.append(newCollection: newCollection)
+                completion(collection)
             } else {
+                collection.failed()
                 completion(nil)
             }
         }

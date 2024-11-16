@@ -1,12 +1,12 @@
 //
-//  UICollectionViewCell.swift
-//  EveryDay
+//  Dictionary+Extension.swift
+//  EveryDayExtensions
 //
-//  Created by Mark Poesch on 3/30/21.
+//  Created by Mark & 4o on 11/16/24.
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2021 FTLapps LLC
+// Copyright (c) 2024 FTLapps LLC
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,12 +27,11 @@
 // SOFTWARE.
 //
 
-import UIKit
+extension Dictionary {
 
-extension UICollectionViewCell {
-
-    static func cell(from collectionView: UICollectionView, for indexPath: IndexPath) -> Self {
-        let identifier = String(describing: Self.self)
-        return collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! Self
+    static func += (lhs: inout Dictionary, rhs: Dictionary) {
+        for (key, value) in rhs {
+            lhs[key] = value
+        }
     }
 }
