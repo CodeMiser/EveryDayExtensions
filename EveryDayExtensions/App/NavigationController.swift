@@ -34,18 +34,31 @@ class NavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationBar.barStyle = .black // barStyle is required to ensure the correct content state on iPhone SE3
-        self.navigationBar.prefersLargeTitles = true
-        self.navigationItem.largeTitleDisplayMode = .always // specified in the StartupViewController Scene
+//        self.navigationBar.isTranslucent = false
+//        self.navigationBar.backgroundColor = .black
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = .white
+        appearance.titleTextAttributes = [
+            .foregroundColor: UIColor.black
+        ]
+        appearance.largeTitleTextAttributes = [
+            .foregroundColor: UIColor.black
+        ]
+        self.navigationBar.standardAppearance = appearance
+        self.navigationBar.scrollEdgeAppearance = appearance
+        self.navigationBar.tintColor = .systemBlue
+//        self.navigationBar.barStyle = Styling.statusBarStyle // required for iPhone SE3
+//        self.navigationBar.prefersLargeTitles = true
+//        self.navigationItem.largeTitleDisplayMode = .always
    }
 
 //    override var preferredStatusBarStyle: UIStatusBarStyle {
 //        return Styling.statusBarStyle
 //    }
 
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-
-        self.navigationBar.barStyle = .black
-    }
+//    override func viewWillLayoutSubviews() {
+//        super.viewWillLayoutSubviews()
+//
+//        self.navigationBar.barStyle = Styling.statusBarStyle
+//    }
 }

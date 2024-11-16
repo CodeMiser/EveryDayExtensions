@@ -38,7 +38,6 @@ class AppCoordinator: Coordinator {
 
     override func start() {
         let vc = StartupViewController.makeFromStoryboard()
-        let navVC = NavigationController(rootViewController: vc)
-        AppDelegate.rootViewController.present(navVC, animated: false)
+        self.rootViewController.viewControllers = [vc]
     }
 }

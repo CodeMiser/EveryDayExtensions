@@ -475,7 +475,7 @@
                             <constraint firstItem="2ZZ-Rj-XTY" firstAttribute="top" secondItem="aRy-9c-2gR" secondAttribute="bottom" id="wx9-mc-tSX"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="EveryDay" id="4ZJ-oj-ThB">
+                    <navigationItem key="navigationItem" title="EveryDay" largeTitleDisplayMode="never" id="4ZJ-oj-ThB">
                         <barButtonItem key="rightBarButtonItem" title="Overflow" id="pS2-qY-P7B">
                             <connections>
                                 <action selector="overflowWithBarButtonItem:" destination="BYZ-38-t0r" id="RJA-px-0kX"/>
@@ -490,12 +490,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="Ofz-9X-dDq" userLabel="Dark Yellow">
-                    <rect key="frame" x="0.0" y="0.0" width="25.5" height="24"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <viewLayoutGuide key="safeArea" id="Tcq-dK-6LI"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                </view>
             </objects>
             <point key="canvasLocation" x="122.40000000000001" y="67.016491754122939"/>
         </scene>

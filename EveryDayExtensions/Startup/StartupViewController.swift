@@ -53,7 +53,7 @@ class StartupViewController: UIViewController, Storyboardable {
 
         StringStyles.setDefaultStyles(normal: .black, .sanFrancisco(24, .thin),
                                       bold: .black, .sanFrancisco(24, .bold),
-                                      highlight: .red, .sanFrancisco(24, .thin),
+                                      highlight: .red, .italicSanFrancisco(24, .thin),
                                       title: .defaultTintColor, .sanFrancisco(36, .thin))
 
         self.attributedStringLabel.attributedText = "*EveryDay*Extensions\n=PURE= _Awesomeness_!".attributed()

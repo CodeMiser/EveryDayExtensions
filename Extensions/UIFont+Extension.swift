@@ -31,7 +31,14 @@ import UIKit
 
 extension UIFont {
 
-    static func sanFrancisco(_ size: Int = 17, _ weight: UIFont.Weight = .regular) -> UIFont {
-        return UIFont.systemFont(ofSize: CGFloat(size), weight: weight)
+    static func sanFrancisco(_ size: CGFloat = 17, _ weight: UIFont.Weight = .regular) -> UIFont {
+        return UIFont.systemFont(ofSize: size, weight: weight)
+    }
+
+    static func italicSanFrancisco(_ size: CGFloat = 17, _ weight: UIFont.Weight = .regular) -> UIFont {
+        guard let fontDescriptor = UIFont.systemFont(ofSize: size, weight: weight).fontDescriptor.withSymbolicTraits(.traitItalic) else {
+            fatalError("italicSanFrancisco Failed")
+        }
+        return UIFont(descriptor: fontDescriptor, size: size)
     }
 }

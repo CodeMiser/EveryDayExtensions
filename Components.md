@@ -1,5 +1,18 @@
 #  EveryDay Components
 
+## AppDelegate & AppCoordinator
+
+### Benefits of the Design
+
+- Separation of Concerns:
+    - AppCoordinator handles the navigation logic, keeping AppDelegate focused solely on the application lifecycle.
+- Flexibility for Future Flows:
+    - As your app grows, AppCoordinator can expand to manage additional navigation paths or sub-coordinators.
+- Reusable Navigation Controller:
+    - Using a NavigationController as rootViewController ensures all subsequent screens inherit navigation capabilities.
+
+This design aligns with modern architectural patterns and provides a robust foundation for managing complex navigation flows.
+
 ## NetworkAPI
 
 ### Purpose
