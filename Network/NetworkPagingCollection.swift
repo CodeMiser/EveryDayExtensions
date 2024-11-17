@@ -68,6 +68,14 @@ class NetworkPagingCollection<Item: Decodable> {
 
     // MARK: - NetworkRequest Helper Methods
 
+    var shouldFetchPage: Bool {
+        return !self.isFetching.contains(self.currentPage + 1) && self.collection.hasMore
+    }
+
+    func fetchingNextPage() {
+        self.isFetching.insert(self.currentPage + 1)
+    }
+
     var pagingParameters: [String: Any] {
         return [
             "page": self.currentPage + 1,
@@ -75,15 +83,7 @@ class NetworkPagingCollection<Item: Decodable> {
         ]
     }
 
-    var shouldFetchPage: Bool {
-        return !self.isFetching.contains(self.currentPage + 1) && self.collection.hasMore
-    }
-
-    func startFetchingPage() {
-        self.isFetching.insert(self.currentPage + 1)
-    }
-
-    func failed() {
+    func fetchFailed() {
         self.isFetching.remove(self.currentPage + 1)
     }
 

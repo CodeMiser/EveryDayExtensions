@@ -82,7 +82,7 @@ extension NetworkRequest {
             return
         }
 
-        collection.startFetchingPage()
+        collection.fetchingNextPage()
 
         self.parameters += collection.pagingParameters
         if self.method != .GET {
@@ -93,7 +93,7 @@ extension NetworkRequest {
                 collection.append(newCollection: newCollection)
                 completion(collection)
             } else {
-                collection.failed()
+                collection.fetchFailed()
                 completion(nil)
             }
         }

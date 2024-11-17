@@ -18,27 +18,27 @@ This design aligns with modern architectural patterns and provides a robust foun
 ### Purpose
 
 1. Centralized API Management:
-- Holds a reference to NetworkSession, which manages headers, base URLs, and network requests.
+    - Holds a reference to `NetworkSession`, which manages headers, base URLs, and network requests.
 2. Extension-Based Organization:
-- Specific API endpoints (e.g., fetchUsers) are implemented via extensions to NetworkAPI, keeping the core class clean.
+    - Specific API endpoints (e.g., `fetchUsers`) are implemented via extensions to `NetworkAPI`, keeping the core class clean.
 3. Application Access:
-- Global let api = NetworkAPI() enables application wide access to all NetworkAPI extension methods. 
+    - Global let `api = NetworkAPI()` enables application wide access to all API extension methods. 
 
 ## NetworkSession
 
 ### Purpose
 
 1. Holds the Global API State:
-- Encapsulates the Base URL and HTTP Header Fields
-2. Uses the Foundation Network API to implement network requests
-- `perform(request:)` collaborates with the `NetworkRequest to form the `URLRequest` and drive the `URLSession`
+    - Encapsulates the Base URL and HTTP Header Fields
+2. Uses Foundation Networking to implement network requests:
+    - `perform(request:)` collaborates with the `NetworkRequest to form the `URLRequest` and drive the `URLSession`
 
 ### Key Dynamics:
 
 1. Thread Performance vs. Safety 
-- Returns control to the main thread to ensure reliable operation within view controllers
+    - Returns control to the main thread to ensure reliable operation within view controllers
 2. Networking Testability
-- Implements a networkLinkConditionerResponseDelay constant to trivially enable stress-testing
+    - Implements a networkLinkConditionerResponseDelay constant to trivially enable stress-testing
 
 ## NetworkRequest
 
@@ -49,15 +49,15 @@ This design aligns with modern architectural patterns and provides a robust foun
 ### Key Dynamics:
 
 1. Explit Endpoint Relationship:
-- HTTP method, path, and parameters
+    - HTTP method, path, and parameters
 2. Flexible Asynchronous Operation:
-- Available `completion` closure parameters include Void, Bool, NetworkResponse?, and NetworkResponse?, NetworkError   
+    - Available `completion` closure parameters include Void, Bool, NetworkResponse?, and NetworkResponse?, NetworkError   
 3. Optional Caching:
-- Via the `execute` method `cacheType: CacheType` parameter
+    - Via the `execute` method `cacheType: CacheType` parameter
 3. Optional Paging:
-- Via the specialized `executePaging` method 
+    - Via the specialized `executePaging` method 
 
-## NetworkCollection (Paging)
+## NetworkCollection & NetworkPagingCollection
 
 ### Purpose
 
@@ -66,14 +66,15 @@ This design aligns with modern architectural patterns and provides a robust foun
 ### Key Dynamics:
 
 1. View Gating the Paging:
-- The UITableView triggers prefetching only when the user scrolls near the end of the currently loaded rows.
-- This means the API is only queried when the UI needs more data, reducing unnecessary requests.
+    - The UITableView triggers prefetching only when the user scrolls near the end of the currently loaded rows.
+    - This means the API is only queried when the UI needs more data, reducing unnecessary requests.
 2. Paging Gating the View:
-- The isFetching set ensures only one request is in progress at any time.
-- Until the current page’s data is appended, the threshold for the next prefetch isn’t crossed, preventing duplicate or overlapping requests.
+    - The isFetching set ensures only one request is in progress at any time.
+    - Until the current page’s data is appended, the threshold for the next prefetch isn’t crossed, preventing duplicate or overlapping requests.
 3. Page Size & Margin:
-- The pageSize (e.g., 20 items) is tuned to exceed 2 * visibleCells.count - margin (e.g., 10–15 items depending on screen size and margins).
-- This ensures there’s always enough data loaded to scroll smoothly without gaps, even during slower network conditions.
+    - The pageSize (e.g., 20 items) is tuned to exceed 2 * visibleCells.count - margin (e.g., 10–15 items depending on screen size and margins).
+    - This ensures there’s always enough data loaded to scroll smoothly without gaps.
+    - Paging operates reliably even with slow network conditions.
 
 ### Why It’s Robust:
 
@@ -92,9 +93,9 @@ This setup strikes a great balance between responsiveness and efficiency. Paging
 ### Key Dynamics:
 
 1. Agnostic:
-- Caching of Data objects makes elminates coupling to the application's NetworkResponse types.
+    - Caching of Data objects makes elminates coupling to the application's NetworkResponse types.
 2. Fleixible:
-- Supports memory, and disk caching via UserDefaults
+    - Supports memory, and disk caching via UserDefaults
 
 ### Why It’s Robust:
 
