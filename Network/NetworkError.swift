@@ -1,8 +1,8 @@
 //
-//  NetworkCollection.swift
-//  NovelEditor
+//  NetworkError.swift
+//  EveryDayExtensions
 //
-//  Created by Mark & 4o on 11/4/24.
+//  Created by Mark & 4o on 11/2/24.
 //
 // The MIT License (MIT)
 //
@@ -29,17 +29,10 @@
 
 import Foundation
 
-class NetworkCollection<Item: Decodable>: NetworkResponse {
-
-    var hasMore: Bool
-    var items: [Item]
-    //let lastPage: Int
-    //let page: Int
-    //let perPage: Int
-    //let total: Int
-
-    init() {
-        self.hasMore = true
-        self.items = []
-    }
+enum NetworkError: Error {
+    case decodingFailed
+    case invalidURL
+    case noResponse
+    case serverError(statusCode: Int)
+    case unknown(Error)
 }

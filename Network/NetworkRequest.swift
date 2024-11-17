@@ -59,13 +59,6 @@ class NetworkRequest {
         self.parameters = [:]
         self.body = try? JSONEncoder().encode(model)
     }
-
-    init(_ method: Method, _ path: String) { // for use with NetworkCollection
-        self.method = method
-        self.path = path
-        self.parameters = [:]
-        self.body = nil
-    }
 }
 
 extension NetworkRequest {

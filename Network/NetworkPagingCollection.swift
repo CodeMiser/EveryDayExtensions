@@ -32,14 +32,14 @@ import Foundation
 class NetworkPagingCollection<Item: Decodable> {
 
     private var collection: NetworkCollection<Item>
-    private var currentPage: Int
     private let pageSize: Int
+    private var currentPage: Int
     private var isFetching: Set<Int>
 
     init(pageSize: Int) {
         self.collection = NetworkCollection<Item>()
-        self.currentPage = 0
         self.pageSize = pageSize
+        self.currentPage = 0
         self.isFetching = []
     }
 
@@ -52,7 +52,7 @@ class NetworkPagingCollection<Item: Decodable> {
 
     var newIndexPaths: [IndexPath] {
         let startIndex = self.collection.items.count - self.pageSize
-        let endIndex = collection.items.count - 1
+        let endIndex = self.collection.items.count - 1
         return (startIndex...endIndex).map { IndexPath(row: $0, section: 0) }
     }
 

@@ -75,11 +75,3 @@ extension NetworkResponse {
         }
     }
 }
-
-enum NetworkError: Error {
-    case decodingFailed
-    case invalidURL
-    case noResponse
-    case serverError(statusCode: Int)
-    case unknown(Error)
-}

@@ -50,6 +50,7 @@
 		4D9DCB152CE8EBE700EF8CE2 /* Components.md in Resources */ = {isa = PBXBuildFile; fileRef = 4D9DCB142CE8EBE700EF8CE2 /* Components.md */; };
 		4D9DCB172CE950A500EF8CE2 /* NetworkPagingCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9DCB162CE950A500EF8CE2 /* NetworkPagingCollection.swift */; };
 		4D9DCB192CE95FF700EF8CE2 /* Dictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9DCB182CE95FF700EF8CE2 /* Dictionary+Extension.swift */; };
+		4D9DCB1B2CE97C2400EF8CE2 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9DCB1A2CE97C2400EF8CE2 /* NetworkError.swift */; };
 		D2BF1A20222ED87A00CB2DFE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BF1A1F222ED87A00CB2DFE /* AppDelegate.swift */; };
 		D2BF1A22222ED87A00CB2DFE /* StartupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BF1A21222ED87A00CB2DFE /* StartupViewController.swift */; };
 		D2BF1A27222ED88000CB2DFE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2BF1A26222ED88000CB2DFE /* Assets.xcassets */; };
@@ -102,6 +103,7 @@
 		4D9DCB142CE8EBE700EF8CE2 /* Components.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Components.md; sourceTree = "<group>"; };
 		4D9DCB162CE950A500EF8CE2 /* NetworkPagingCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkPagingCollection.swift; sourceTree = "<group>"; };
 		4D9DCB182CE95FF700EF8CE2 /* Dictionary+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extension.swift"; sourceTree = "<group>"; };
+		4D9DCB1A2CE97C2400EF8CE2 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		D2BF1A1C222ED87A00CB2DFE /* EveryDayExtensions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EveryDayExtensions.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2BF1A1F222ED87A00CB2DFE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2BF1A21222ED87A00CB2DFE /* StartupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartupViewController.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				4D9DCAD42CE0109300EF8CE2 /* NetworkAPI.swift */,
 				4D9DCAD52CE0109300EF8CE2 /* NetworkCache.swift */,
 				4D9DCAD62CE0109300EF8CE2 /* NetworkCollection.swift */,
+				4D9DCB1A2CE97C2400EF8CE2 /* NetworkError.swift */,
 				4D9DCB162CE950A500EF8CE2 /* NetworkPagingCollection.swift */,
 				4D9DCAD72CE0109300EF8CE2 /* NetworkRequest.swift */,
 				4D9DCAD82CE0109300EF8CE2 /* NetworkResponse.swift */,
@@ -352,6 +355,7 @@
 				4D9DCAF02CE0109300EF8CE2 /* UITextField+Extension.swift in Sources */,
 				4D9DCAF12CE0109300EF8CE2 /* NetworkResponse.swift in Sources */,
 				4D9DCB132CE3838C00EF8CE2 /* OverflowUserViewController.swift in Sources */,
+				4D9DCB1B2CE97C2400EF8CE2 /* NetworkError.swift in Sources */,
 				4D9DCAF22CE0109300EF8CE2 /* Array+Extension.swift in Sources */,
 				4D9DCAF32CE0109300EF8CE2 /* Character+Extension.swift in Sources */,
 				4D9DCAF42CE0109300EF8CE2 /* UITableViewHeaderFooterView+Extension.swift in Sources */,
